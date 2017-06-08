@@ -1,0 +1,28 @@
+		(function(d, s, id) {
+
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+
+		
+    $("#buscar").click(function(){
+               var url = "core/controllers/principalController.php";
+               var datos = $('#datos').val();
+               var metodo = "buscar";
+
+               $.post(url,{datos:datos, metodo:metodo},function(data){
+                  console.log(data);
+                   $('#resultado').show('low');
+                   $('#tabla').html(data);
+               });
+          
+
+         });
+
+         $('#cerrar_tabla').click(function(){
+                  $('#resultado').hide('low');
+         });

@@ -1,0 +1,117 @@
+<!-- Page Heading -->
+	<div class="row">
+    	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        	<ol class="breadcrumb">
+            	<li>
+                	<a>
+                		<i class="fa fa-dashboard"></i> Procesos 
+                	</a>
+            	</li>
+            	<li class="active">Archivos de Procesos
+            	</li>
+        	</ol>
+    	</div>
+	</div>
+
+
+   		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"> 
+				<center>
+						<h3 class="text-primary">Proceso ({{proceso.nom_tipo_proceso}}) : {{proceso.num_proceso}}</h3>	
+				</center>
+				<div class="row">
+					<div class="col-sm-2 col-md-3 col-lg-3"></div>
+					<div class="col-xs-12 col-sm-8 col-md-6 col-lg-6">		
+						<table class="table">
+							<tbody>
+								<tr>
+									<td>CIUDAD: </td>
+									<td>{{proceso.ciudad}}</td>
+								</tr>
+								<tr>
+									<td>NOMBRE EMPRESA: </td>
+									<td>{{proceso.nom_empresa}}</td>
+								</tr>
+								<tr>
+									<td>DEMANDANTE: </td>
+									<td>{{proceso.demandante~' ('~proceso.cc_demandante~')'}}</td>
+								</tr>
+								<tr>
+									<td>DEMANDADO: </td>
+									<td>{{proceso.demandado~' ('~proceso.cc_demandado~')'}}</td>
+								</tr>
+								<tr>
+									<td>VALOR: </td>
+									<td>{{proceso.valor}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+		
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 style="text-align:center">Archivos del Proceso <button id="createArchivo" class="btn btn-link">Nuevo <i class="fa fa-archive"></i></button></h4>
+				</div>
+			
+				<div class="panel-body">
+					<table id="tableArchivo" class="table table-condensed table-hover table-bordered table-responsive">
+						<thead>
+							<tr>
+								<th>Archivo</th>
+								<th>Fecha de Archivo</th>
+								<th>Fecha de Cargue</th>
+								<th></th>			
+							</tr>
+						</thead>
+						<tbody>
+							{% for documento in documentos  %}
+							<tr>
+								<td>{{documento.nom_documento}}</td>
+								<td>{{documento.ff_file}}</td>
+								<td>{{documento.ff_load}}</td>
+								<td><a href="../files/{{documento.ruta}}" target="_blank" class="btn btn-danger"><i class="fa fa-file-pdf-o"></i></a>
+								<button id="{{documento.id_documento}}" class="btn btn-success editArchivo"><i class="fa fa-pencil-square-o"></i></button>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div> 
+
+            
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+ <script>
+    $(document).ready(function() {
+        tablas();
+    });
+
+    $('#createArchivo').click(function(){  cargarCreateArchivo(); });
+    $('.editArchivo').click(function(){ var id = $(this).attr('id'); cargarEditArchivo(id); });
+   
+
+    function tablas()
+    {
+    	$('#tableArchivo').DataTable({
+            responsive: true,
+            "order": [[0, "desc"]],
+					"language":{
+					"lengthMenu": "Mostrar _MENU_ registros por pagina",
+					"info": "Mostrando pagina _PAGE_ de _PAGES_",
+						"infoEmpty": "No hay registros disponibles",
+						"infoFiltered": "(filtrada de _MAX_ registros)",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"search": "Buscar:",
+						"zeroRecords":    "No se encontraron registros coincidentes",
+						"paginate": {
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},					
+					},
+        });
+    }
+</script>

@@ -1,0 +1,70 @@
+
+<!-- Page Heading -->
+	<div class="row">
+    	<div class="col-lg-12">
+        	<ol class="breadcrumb">
+            	<li class="active">Procesos</li>
+        	</ol>
+    	</div>
+	</div>
+
+	<div class="col-md-12">
+		<button id="createProceso" class="btn btn-primary">Nuevo Proceso</button><br><br>
+		<table id="table" class="table table-condensed table-hover table-bordered table-responsive">
+		 	<thead>
+		 		<th>#PROCESO</th>
+		 		<th>CIUDAD</th>
+		 		<th>NOMBRE EMPRESA</th>
+		 		<th>DEMANDANTE</th>
+		 		<th>DEMANDADO</th>
+		 		<th>VALOR</th>
+		 		<th><i class="fa fa-archive" aria-hidden="true"></i></th>
+		 	</thead>
+		 	<tbody>
+		 		{% for proceso in procesos  %}		 	
+		 			<tr>
+		 				<td>{{proceso.num_proceso}}</td>
+		 				<td>{{proceso.ciudad}}</td>
+		 				<td>{{proceso.nom_empresa}}</td>
+		 				<td>{{proceso.demandante~' ('~proceso.cc_demandante~')'}}</td>
+		 				<td>{{proceso.demandado~' ('~proceso.cc_demandado~')'}}</td>
+		 				<td>${{proceso.valor}}.oo</td>
+		 				<td><button class="btn btn-link adjuntarArchivo" id="{{proceso.id_proceso}}" ><i class="fa fa-archive" aria-hidden="true"></i></button>
+		 					<button id="{{proceso.id_proceso}}" class="btn btn-link editProceso"><i class="fa fa-pencil-square-o text-success"></i></button></td>
+		 			</tr>										
+		 		{% endfor %}
+		 	</tbody>
+		 </table>
+	</div>
+
+	 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        tablas();
+    });
+    $('#createProceso').click(function(){  cargarCreateProceso(); });
+    $('.editProceso').click(function(){ var id = $(this).attr('id'); cargarEditProceso(id); });
+    $('.adjuntarArchivo').click(function(){ var id = $(this).attr('id'); cargarAdjuntarArchivo(id); });
+
+    function tablas()
+    {
+    	$('#table').DataTable({
+            responsive: true,
+            "order": [[0, "desc"]],
+					"language":{
+					"lengthMenu": "Mostrar _MENU_ registros por pagina",
+					"info": "Mostrando pagina _PAGE_ de _PAGES_",
+						"infoEmpty": "No hay registros disponibles",
+						"infoFiltered": "(filtrada de _MAX_ registros)",
+						"loadingRecords": "Cargando...",
+						"processing":     "Procesando...",
+						"search": "Buscar:",
+						"zeroRecords":    "No se encontraron registros coincidentes",
+						"paginate": {
+							"next":       "Siguiente",
+							"previous":   "Anterior"
+						},					
+					},
+        });
+    }
+    </script>

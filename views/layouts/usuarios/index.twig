@@ -1,0 +1,80 @@
+<!-- Page Heading -->
+			<div class="row">
+    			<div class="col-lg-12">
+        			<ol class="breadcrumb">
+            			<li>
+                			<a href="../"><i class="fa fa-dashboard"></i> Home </a>
+            			</li>
+            			<li class="active">Archivos de Procesos</li>
+        			</ol>
+    			</div>
+			</div>
+
+			<div class="col-md-8">
+                <div class="row"> 
+                    <div class="container">
+						<center><h3>Proceso ({{proceso.nom_tipo_proceso}}) : {{proceso.num_proceso}}</h3></center>
+						<div class="col-md-3"></div>
+						<div class="col-md-6">		
+							<table class="table">
+								<tbody>
+									<tr>
+										<td>CIUDAD: </td>
+										<td>{{proceso.ciudad}}</td>
+									</tr>
+									<tr>
+										<td>NOMBRE EMPRESA: </td>
+										<td>{{proceso.nom_empresa}}</td>
+									</tr>
+									<tr>
+										<td>DEMANDANTE: </td>
+										<td>{{proceso.demandante~' ('~proceso.cc_demandante~')'}}</td>
+									</tr>
+									<tr>
+										<td>DEMANDADO: </td>
+										<td>{{proceso.demandado~' ('~proceso.cc_demandado~')'}}</td>
+									</tr>
+									<tr>
+										<td>VALOR: </td>
+										<td>{{proceso.valor}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+						<div class="container">
+							<div class="row">
+								<h2 style="text-align:center">Archivos del Proceso</h2>
+							</div>
+
+								<div id="table" class="col-md-10">
+								<table class="table table-condensed table-responsive" id="myTable">
+									<thead>
+										<tr>
+											<th>Archivo</th>
+											<th>Fecha de Archivo</th>
+											<th>Fecha de Cargue</th>
+											<th>pdf</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										{% for documento in documentos  %}
+										<tr>
+											<td>{{documento.nom_documento}}</td>
+											<td>{{documento.ff_file}}</td>
+											<td>{{documento.ff_load}}</td>
+											<td><a href="../files/{{documento.ruta}}" target="_blank"><img src="../public/img/pdf.ico" width="40"></a></td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+								</div>
+							</div>
+                </div>
+                <!--row-->
+               
+
+            </div>
+            <!-- /.container-fluid -->
