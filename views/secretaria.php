@@ -13,10 +13,17 @@
     <title>siex</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="../public/assets/bootstrap/css/bootstrap.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+     <!-- Bootstrap Material Design -->
+    <link href="../public/assets/materialize/css/bootstrap-material-design.css" rel="stylesheet">
+    <link href="../public/assets/materialize/css/ripples.min.css" rel="stylesheet">  
+
+     <!-- Dropdown.js -->
+    <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../public/assets/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -36,6 +43,9 @@
     <!-- Custom Fonts -->
     <link href="../public/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- Mi Estilo -->
+    <link href="../public/css/miStilo.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -51,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">expedientes</a>
+                <a id="titulo_menu" class="navbar-brand" href="index.html">expedientes</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -82,10 +92,10 @@
                             <a href="" id="procesos"><i class="fa fa-indent fa-fw"></i> Procesos </a>
                         </li>
                         <li>
-                            <a href="" id="usuarios"><i class="fa  fa-users fa-fw"></i> Perfiles </a>
+                            <a href="" id="participantes"><i class="fa fa-user-plus fa-fw"></i> Participantes </a>
                         </li>
                         <li>
-                            <a href="" id="usuarios"><i class="fa  fa-users fa-fw"></i> Perfiles/Procesos </a>
+                            <a href="" id="relaciones"><i class="fa fa-sitemap fa-fw"></i> Relaciones </a>
                         </li>
                     </ul>
                 </div>
@@ -109,6 +119,13 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="../public/assets/bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- Material Design for Bootstrap -->
+    <script src="../public/assets/materialize/js/material.js"></script>
+    <script src="../public/assets/materialize/js/ripples.min.js"></script>
+    <script>
+    $.material.init();
+    </script>
+
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../public/assets/metisMenu/metisMenu.min.js"></script>
 
@@ -124,6 +141,10 @@
     <!-- Custom Theme JavaScript -->
     <script src="../public/assets/sb-admin/js/sb-admin-2.js"></script>
     <script type="text/javascript" src="../public/js/secretaria.js"></script>
+    <script type="text/javascript" src="../public/js/proceso.js"></script>
+    <script type="text/javascript" src="../public/js/archivo.js"></script>
+    <script type="text/javascript" src="../public/js/participante.js"></script>
+    <script type="text/javascript" src="../public/js/relacion.js"></script>
     
 
     

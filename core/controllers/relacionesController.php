@@ -2,8 +2,8 @@
 require_once '../models/bbdd.php';
 
 
-if($_POST['metodo'] == "indexProceso"){
-	indexProceso($twig, $conexion);
+if($_POST['metodo'] == "indexRelacion"){
+	indexRelacion($twig, $conexion);
 
 }elseif($_POST['metodo'] == "createProceso"){
 	createProceso($twig, $conexion);
@@ -31,17 +31,20 @@ if($_POST['metodo'] == "indexProceso"){
 ///////////////////////vistas procesos/////////////////////////////
 
 
-function indexProceso($twig, $conexion)
+function indexRelacion($twig, $conexion)
 	{
 		$procesos = null;
-		$sql = "SELECT proceso.*, tipo_proceso.nom_tipo_proceso FROM proceso, tipo_proceso WHERE tipo_proceso.id_tipo_proceso = proceso.id_tipo_proceso";
+		$sql = "SELECT relaciones_procesos.*, datos.nom_datos, procesos.num_expediente, procesos.ciudad  
+                FROM relaciones_procesos, datos, procesos 
+                WHERE relaciones_procesos.id_datos=datos.id_datos 
+                AND relaciones_procesos.id_proceso = procesos.id_proceso ";
 		$consulta = $conexion->query($sql);
 		while($datos = $consulta->fetch_object())
 				{
-					$procesos[] = $datos;
+					$relaciones[] = $datos;
 				}
 
-		echo $twig->render('layouts/secretaria/procesos/index.twig', compact('procesos'));
+		echo $twig->render('layouts/secretaria/relaciones/index.twig', compact('relaciones'));
 	
 	}
 

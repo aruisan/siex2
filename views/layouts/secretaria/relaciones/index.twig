@@ -3,35 +3,29 @@
 	<div class="row">
     	<div class="col-lg-12">
         	<ol class="breadcrumb">
-            	<li class="active">Procesos</li>
+            	<li class="active">Relaciones de Procesos</li>
         	</ol>
     	</div>
 	</div>
 
 	<div class="col-md-12">
-		<button id="createProceso" class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Proceso</button><br><br>
+		<button id="createProceso" class="btn btn-primary">Nuevo Proceso</button><br><br>
 		<table id="table" class="table table-condensed table-hover table-bordered table-responsive">
 		 	<thead>
 		 		<th>#PROCESO</th>
 		 		<th>CIUDAD</th>
-		 		<th>TIPO PROCESO</th>
-		 		<th>DEMANDANTE</th>
-		 		<th>DEMANDADO</th>
-		 		<th>VALOR</th>
-		 		<th><i class="fa fa-archive" aria-hidden="true"></i></th>
-				 <th><i class="fa fa-pencil-square-o text-success"></i></th>
+		 		<th>NOMBRE</th>
+		 		<th>RELACION</th>
+				<th><i class="fa fa-pencil-square-o text-success"></i></th>
 		 	</thead>
 		 	<tbody>
-		 		{% for proceso in procesos  %}		 	
+		 		{% for relacion in relaciones  %}		 	
 		 			<tr>
-		 				<td>{{proceso.num_expediente}}</td>
-		 				<td>{{proceso.ciudad}}</td>
-		 				<td>{{proceso.nom_tipo_proceso}}</td>
-		 				<td>{% for demandante in demandantes  %}{% if demandante.id_proceso == proceso.id_proceso  %}{{demandante.nom_datos}} ( {{demandante.num_dc}} ){% endif %}{% endfor %}</td>
-		 				<td>{% for demandado in demandados  %}{% if demandado.id_proceso == proceso.id_proceso  %}{{demandado.nom_datos}} ( {{demandado.num_dc}} ){% endif %}{% endfor %}</td>
-		 				<td>${{proceso.valor}}.oo</td>
-		 				<td><button class="btn btn-link adjuntarArchivo" id="{{proceso.id_proceso}}" ><i class="fa fa-archive" aria-hidden="true"></i></button></td>
-						<td><button id="{{proceso.id_proceso}}" class="btn btn-link editProceso"><i class="fa fa-pencil-square-o text-success"></i></button></td>
+		 				<td>{{relacion.num_expediente}}</td>
+		 				<td>{{relacion.ciudad}}</td>
+		 				<td>{{relacion.nom_datos}}</td>
+		 				<td>{{relacion.cargo}}</td>
+		 				<td><button id="{{relacion.id_relacion_proceso}}" class="btn btn-link editProceso"><i class="fa fa-pencil-square-o text-success"></i></button></td>
 					 </tr>										
 		 		{% endfor %}
 		 	</tbody>
