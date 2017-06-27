@@ -1,25 +1,26 @@
 
-		<table id="myTable" class="table">
+
+		 <table id="table" class="table table-condensed table-hover table-bordered table-responsive">
 		 	<thead>
 		 		<th>#PROCESO</th>
 		 		<th>CIUDAD</th>
-		 		<th>NOMBRE EMPRESA</th>
+		 		<th>TIPO PROCESO</th>
 		 		<th>DEMANDANTE</th>
 		 		<th>DEMANDADO</th>
 		 		<th>VALOR</th>
-		 		<th>ADJUNTAR</th>
+		 		<th>VER</th>
 		 	</thead>
 		 	<tbody>
-		 		{% for result in results  %}		 	
+		 		{% for proceso in procesos  %}		 	
 		 			<tr>
-		 				<td>{{result.num_proceso}}</td>
-		 				<td>{{result.ciudad}}</td>
-		 				<td>{{result.nom_empresa}}</td>
-		 				<td>{{result.demandante~' ('~result.cc_demandante~')'}}</td>
-		 				<td>{{result.demandado~' ('~result.cc_demandado~')'}}</td>
-		 				<td>${{result.valor}}.oo</td>
+		 				<td>{{proceso.num_expediente}}</td>
+		 				<td>{{proceso.ciudad}}</td>
+		 				<td>{{proceso.nom_tipo_proceso}}</td>
+		 				<td>{% for demandante in demandantes  %}{% if demandante.expediente == proceso.num_expediente  %}{{demandante.nom_datos}} ( {{demandante.num_dc}} ){% endif %}{% endfor %}</td>
+		 				<td>{% for demandado in demandados  %}{% if demandado.expediente == proceso.num_expediente  %}{{demandado.nom_datos}} ( {{demandado.num_dc}} ){% endif %}{% endfor %}</td>
+		 				<td>${{proceso.valor}}.oo</td>
 		 				<td><a  class="btn btn-success" href="views/usuarios.php?id={{result.id_proceso}}">Ver</a></td>
-		 			</tr>										
+					 </tr>										
 		 		{% endfor %}
 		 	</tbody>
 		 </table>

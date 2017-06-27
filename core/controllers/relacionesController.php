@@ -37,7 +37,7 @@ function indexRelacion($twig, $conexion)
 		$sql = "SELECT relaciones_procesos.*, datos.nom_datos, procesos.num_expediente, procesos.ciudad  
                 FROM relaciones_procesos, datos, procesos 
                 WHERE relaciones_procesos.id_datos=datos.id_datos 
-                AND relaciones_procesos.id_proceso = procesos.id_proceso ";
+                AND relaciones_procesos.expediente = procesos.num_expediente ";
 		$consulta = $conexion->query($sql);
 		while($datos = $consulta->fetch_object())
 				{

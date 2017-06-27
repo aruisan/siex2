@@ -23,3 +23,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 #titulo_menu{
     color: black;
 }
+
+#perfil{
+	background: rgba(255,255,255,.6);
+}

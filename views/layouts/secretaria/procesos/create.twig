@@ -2,27 +2,110 @@
 	<div class="row">
     	<div class="col-lg-12">
         	<ol class="breadcrumb">
-            	<li class="active">Crear Nuevo Proceso</li>
+                <li> <button class="btn btn-link" id="cargarProceso">Ver Procesos</button></li>       
+            	<li class="active">Formulario Creacion de Procesos</li>
         	</ol>
     	</div>
 	</div>
 
 	<div class="col-md-12">
-		<form>
-			<div class="form-group">
-    						<label for="exampleInputEmail1">Titulo de la Noticia</label>
-    						<input type="text" class="form-control" id="titulo" value="<?= $datos->titulo; ?>">
-    						<small class="form-text text-muted">Titulo de la Noticia que se vera en el index de la intranet</small>
-  						</div>
+		<form id="form-create">
 
-  						  <div class="form-group">
-						    <label for="exampleTextarea">Descripcion de la Noticia</label>
-						    <textarea class="form-control" id="descripcion" rows="14"><?= $datos->descripcion; ?></textarea>
-						    <small class="form-text text-muted">Descripcion de la Noticia que se vera en el index de la intranet</small>
-						  </div>
+        <center><h4 class="text-primary">DATOS DE EXPEDIENTE</h4></center>
+        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    			<label>NUMERO DE EXPEDIENTE: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-archive-o" aria-hidden="true"></i></span>
+    			    <input type="text" class="form-control" name="expediente">
+                </div>
+    			<small class="form-text text-muted">expediente del proceso que se va a crear</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+    			<label>CIUDAD: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+    			    <input type="text" class="form-control" name="ciudad">
+                </div>
+    			<small class="form-text text-muted">ciudad donde se llevara acabo el proceso</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
+    			<label>VALOR: </label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+    			    <input type="text" class="form-control" name="valor">
+										<span class="input-group-addon">.oo</span>
+                </div>
+    			<small class="form-text text-muted">Valor a pagar el demandado</small>
+  			</div>
+    
 
-						  <div class="form-group">
-							<button class="btn btn-success" id="actualizarNoticia">Actualizar</button>						  	
-						  </div>
-		</form>
+
+
+
+	       <center><h4 class="text-primary">IMPLICADOS DIRECTOS DE EXPEDIENTE</h4></center>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    			<label>demandante: </label>
+                <select name="demandante" class="form-control">
+						{% for dato in datos %}
+							<option value="{{dato.id_datos}}">{{dato.nom_datos}} ID: {{dato.num_dc}}</option>
+						{% endfor %}
+				</select>
+    			<small class="form-text text-muted">relacionar persona demandante</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    			<label>demandado: </label>
+                <select name="demandado" class="form-control">
+						{% for dato in datos %}
+							<option value="{{dato.id_datos}}">{{dato.nom_datos}} ( {{dato.num_dc}} )</option>
+						{% endfor %}
+				</select>
+    			<small class="form-text text-muted">relacionar persona demandado</small>
+  			</div>
+
+
+
+
+
+            <center><h4 class="text-primary">PARTICIPANTES DE EXPEDIENTE</h4></center>
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>Abogado demandante: </label>
+                <select name="abo_demandante" class="form-control">
+                        {% for abogado in abogados %}
+                            <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ID: {{abogado.num_dc}}</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandante</small>
+            </div>
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>Abogado demandado: </label>
+                <select name="abo_demandado" class="form-control">
+                        {% for abogado in abogados %}
+                            <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ( {{abogado.num_dc}} )</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandado</small>
+            </div>
+
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>juez del proceso: </label>
+                <select name="juez" class="form-control">
+                        {% for juez in jueces %}
+                            <option value="{{juez.id_datos}}">{{juez.nom_datos}} ID: {{juez.num_dc}}</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandante</small>
+            </div>
+
+    
+            <br>
+                <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button class="btn btn-primary" id="storeProceso">Nuevo Proceso</button>						  	
+                </div>
+    
+        </form>
 	</div>
+
+    <script>
+    $('#storeProceso').click(function(event){event.preventDefault();  storeProceso(); });
+    $('#cargarProceso').click(function(){  cargarProceso(); });
+    </script>

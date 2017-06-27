@@ -22,6 +22,18 @@ function cargarCreateParticipante()
         });
 }
 
+function cargarEditParticipante(id)
+{	
+		var url = "../core/controllers/participantesController.php";
+        var metodo = "editParticipante";
+        var di = "id="+id;
+
+        $.post(url,{metodo:metodo, id:id}, function(data){
+        $("#page-wrapper").html(data);
+        });
+
+}
+
 
 ////////crud participantes////////
 
@@ -32,8 +44,18 @@ function storeParticipante()
 	var url = "../core/controllers/participantesController.php";
 
 	  $.post(url,datos+'&'+metodo, function(data){
-	  	console.log(data);
         $("#page-wrapper").html(data);
         });
 }
 
+
+function  updateParticipante(id)
+{
+	var datos = $('#form-create').serialize();
+	var metodo = "metodo=updateParticipante";
+	var url = "../core/controllers/participantesController.php";
+
+	  $.post(url,datos+'&'+metodo+'&'+'id='+id, function(data){
+        $("#page-wrapper").html(data);
+        });
+}

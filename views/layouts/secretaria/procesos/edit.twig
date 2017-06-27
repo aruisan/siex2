@@ -1,1 +1,116 @@
-<h1>{{proceso.nom_empresa}} </h1>
+<!-- Page Heading -->
+	<div class="row">
+    	<div class="col-lg-12">
+        	<ol class="breadcrumb">
+                <li> <button class="btn btn-link" id="cargarProceso">Ver Procesos</button></li>       
+            	<li class="active">Formulario Editar Proceso</li>
+        	</ol>
+    	</div>
+	</div>
+
+	<div class="col-md-12">
+		<form id="form-create">
+
+        <center><h4 class="text-primary">DATOS DE EXPEDIENTE</h4></center>
+        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    			<label>NUMERO DE EXPEDIENTE: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-file-archive-o" aria-hidden="true"></i></span>
+    			    <input type="text" class="form-control" name="expediente" value="{{proceso.num_expediente}}">
+                </div>
+    			<small class="form-text text-muted">expediente del proceso que se va a crear</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+    			<label>CIUDAD: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+    			    <input type="text" class="form-control" name="ciudad" value="{{proceso.ciudad}}">
+                </div>
+    			<small class="form-text text-muted">ciudad donde se llevara acabo el proceso</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
+    			<label>VALOR: </label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+    			    <input type="text" class="form-control" name="valor" value="{{proceso.valor}}">
+					<span class="input-group-addon">.oo</span>
+                </div>
+    			<small class="form-text text-muted">Valor a pagar el demandado</small>
+  			</div>
+    
+
+
+
+
+	       <center><h4 class="text-primary">IMPLICADOS DIRECTOS DE EXPEDIENTE</h4></center>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    			<label>demandante: </label>
+                <select name="demandante" class="form-control">
+						{% for dato in datos %}
+							<option value="{{dato.id_datos}}" {% if dato.id_datos == edit_demandante  %} selected {% endif %}>
+							{{dato.nom_datos}} ID: {{dato.num_dc}}</option>
+						{% endfor %}
+				</select>
+    			<small class="form-text text-muted">relacionar persona demandante</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    			<label>demandado: </label>
+                <select name="demandado" class="form-control">
+						{% for dato in datos %}
+							<option value="{{dato.id_datos}}" {% if dato.id_datos == edit_demandado  %} selected {% endif %}>
+							{{dato.nom_datos}} ( {{dato.num_dc}} )</option>
+						{% endfor %}
+				</select>
+    			<small class="form-text text-muted">relacionar persona demandado</small>
+  			</div>
+
+
+
+
+
+            <center><h4 class="text-primary">PARTICIPANTES DE EXPEDIENTE</h4></center>
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>Abogado demandante: </label>
+                <select name="abo_demandante" class="form-control">
+                        {% for abogado in abogados %}
+                            <option value="{{abogado.id_datos}}" {% if abogado.id_datos == edit_abo_demandante  %} selected {% endif %}>
+                            {{abogado.nom_datos}} ID: {{abogado.num_dc}}</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandante</small>
+            </div>
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>Abogado demandado: </label>
+                <select name="abo_demandado" class="form-control">
+                        {% for abogado in abogados %}
+                            <option value="{{abogado.id_datos}}" {% if abogado.id_datos == edit_abo_demandado  %} selected {% endif %}>
+                            {{abogado.nom_datos}} ( {{abogado.num_dc}} )</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandado</small>
+            </div>
+
+            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                <label>juez del proceso: </label>
+                <select name="juez" class="form-control">
+                        {% for juez in jueces %}
+                            <option value="{{juez.id_datos}}" {% if juez.id_datos == edit_juez  %} selected {% endif %}>
+                            {{juez.nom_datos}} ID: {{juez.num_dc}}</option>
+                        {% endfor %}
+                </select>
+                <small class="form-text text-muted">relacionar persona demandante</small>
+            </div>
+
+    
+            <br>
+                <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <button class="btn btn-success" id="updateProceso">Cambiar Proceso</button>						  	
+                </div>
+    
+        </form>
+	</div>
+
+    <script>
+    $('#updateProceso').click(function(event){event.preventDefault();  updateProceso('{{proceso.num_expediente}}'); });
+    $('#cargarProceso').click(function(){  cargarProceso(); });
+    </script>
