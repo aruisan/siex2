@@ -17,6 +17,9 @@ if($_POST['metodo'] == "indexParticipante"){
 }elseif($_POST['metodo'] == "updateParticipante"){	
 	updateParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono'], $_POST['id']);
 
+if($_POST['metodo'] == "indexUsuarioParticipante"){
+	indexUsuarioParticipante($twig, $conexion);
+
 }else{
     header('location:../../index.php');
 }
@@ -102,8 +105,20 @@ function updateParticipante($twig, $conexion, $nom, $dc, $persona, $email, $dire
 
 }
 
-	
+////////////vistas roles//////////////
 
+	function indexUsuarioParticipante($twig, $conexion)
+	{
+		$procesos = null;
+		$sql = "SELECT * FROM datos";
+		$consulta = $conexion->query($sql);
+		while($datos = $consulta->fetch_object())
+				{
+					$participantes[] = $datos;
+				}
+
+		echo $twig->render('layouts/secretaria/participantes/index.twig', compact('participantes'));
+	}
 
 
 

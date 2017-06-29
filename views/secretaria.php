@@ -92,10 +92,13 @@
                             <a href="" id="procesos"><i class="fa fa-indent fa-fw"></i> Procesos </a>
                         </li>
                         <li>
-                            <a href="" id="participantes"><i class="fa fa-user-plus fa-fw"></i> Participantes </a>
+                            <a href="" id="participantes"><i class="fa fa-address-card-o"></i> Participantes </a>
                         </li>
                         <li>
                             <a href="" id="relaciones"><i class="fa fa-sitemap fa-fw"></i> Relaciones </a>
+                        </li>
+                         <li>
+                            <a href="" id="participantes"><i class="fa fa-user-plus fa-fw"></i> Usuarios </a>
                         </li>
                     </ul>
                 </div>

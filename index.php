@@ -21,7 +21,7 @@
       <header class="main-header">
          <div class="container">
             <div class="header-content">
-               <a href="index.html">
+               <a href="index.php">
                   <img src="public/img/logo.png" width="150" alt="site identity" /><h5 style="color: white;">Sistema Integral de EXpedientes</h5>
                </a>
 
@@ -32,7 +32,8 @@
                      </li>
                   </ul>
 
-                  <a href="#" class="btn btn-outlined">Entrar</a>
+                  <a href="entrar.php" class="btn btn-outlined">Entrar</a>
+                  <a href="registrarse.php" class="btn btn-outlined">Registrarse</a>
                </nav>
             </div>
          </div>

@@ -1,5 +1,15 @@
 <?php
-  $id = $_GET['id'];
+    session_start();
+
+    if($_SESSION['num_user'] == null)
+    {
+        header('location:../entrar.php');
+    }
+
+    
+  $id = $_SESSION['num_user'];
+
+
 ?>
 
 <!DOCTYPE html>

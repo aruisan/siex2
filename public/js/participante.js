@@ -59,3 +59,16 @@ function  updateParticipante(id)
         $("#page-wrapper").html(data);
         });
 }
+
+
+/////////////vistas  roles //////////////
+
+function cargarUsuariosParticipantes()
+{
+        var url = "../core/controllers/participantesController.php";
+        var metodo = "indexUsuariosParticipante";
+
+        $.post(url,{metodo:metodo}, function(data){
+        $("#page-wrapper").html(data);
+        });
+}

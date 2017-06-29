@@ -23,24 +23,25 @@
 
     <!-- Custom Css -->
     <link href="public/css/style.css" rel="stylesheet">
+
 </head>
 
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">Admin<b>BSB</b></a>
-            <small>Admin BootStrap Based - Material Design</small>
+            <a href="index.php"><b>SIEX</b></a>
+            <small>Sistema Integral de EXpedientes</small>
         </div>
         <div class="card">
             <div class="body">
                 <form id="sign_in" method="POST">
-                    <div class="msg">Sign in to start your session</div>
+                    <div class="msg">Ingresa tus datos</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                            <input type="text" class="form-control" name="username" placeholder="Usuario" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -52,13 +53,12 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">Entrar</button>
+                        <div class="col-xs-5">
+                            <button class="btn btn-block bg-blue waves-effect" type="submit">Entrar</button>
                         </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
+                    
                         <div class="col-xs-6">
-                            <a href="sign-up.html">Registrarse Ahora!</a>
+                            <a href="registrarse.php" class="btn btn-link">Registrarse Ahora!</a>
                         </div>
                     </div>
                 </form>

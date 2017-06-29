@@ -9,7 +9,6 @@
 	</div>
 
 	<div class="col-md-12">
-		<button id="createProceso" class="btn btn-primary">Nuevo Proceso</button><br><br>
 		<table id="table" class="table table-condensed table-hover table-bordered table-responsive">
 		 	<thead>
 		 		<th>#PROCESO</th>
@@ -37,7 +36,6 @@
     $(document).ready(function() {
         tablas();
     });
-    $('#createProceso').click(function(){  cargarCreateProceso(); });
     $('.editProceso').click(function(){ var id = $(this).attr('id'); cargarEditProceso(id); });
     $('.adjuntarArchivo').click(function(){ var id = $(this).attr('id'); cargarAdjuntarArchivo(id); });
 
