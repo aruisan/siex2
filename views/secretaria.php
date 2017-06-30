@@ -121,6 +121,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../public/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $('#myModal').on('shown.bs.modal', function(){$('#myInput').focus(); });
+    </script>
 
     <!-- Material Design for Bootstrap -->
     <script src="../public/assets/materialize/js/material.js"></script>

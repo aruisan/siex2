@@ -11,101 +11,211 @@
 	<div class="col-md-12">
 		<form id="form-create">
 
-        <center><h4 class="text-primary">DATOS DE EXPEDIENTE</h4></center>
-        <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
-    			<label>NUMERO DE EXPEDIENTE: </label>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-file-archive-o" aria-hidden="true"></i></span>
-    			    <input type="text" class="form-control" name="expediente">
+
+
+
+
+
+            <div class="panel panel-info" id="form_section1">
+                <div class="panel-heading ">
+                    <h4 class="text-center">DATOS DE EXPEDIENTE</h4>
                 </div>
-    			<small class="form-text text-muted">expediente del proceso que se va a crear</small>
-  			</div>
-            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
-    			<label>CIUDAD: </label>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
-    			    <input type="text" class="form-control" name="ciudad">
-                </div>
-    			<small class="form-text text-muted">ciudad donde se llevara acabo el proceso</small>
-  			</div>
-            <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
-    			<label>VALOR: </label>
-                <div class="input-group">
-                    <span class="input-group-addon">$</span>
-    			    <input type="text" class="form-control" name="valor">
-										<span class="input-group-addon">.oo</span>
-                </div>
-    			<small class="form-text text-muted">Valor a pagar el demandado</small>
-  			</div>
-    
-
-
-
-
-	       <center><h4 class="text-primary">IMPLICADOS DIRECTOS DE EXPEDIENTE</h4></center>
-            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    			<label>demandante: </label>
-                <select name="demandante" class="form-control">
-						{% for dato in datos %}
-							<option value="{{dato.id_datos}}">{{dato.nom_datos}} ID: {{dato.num_dc}}</option>
-						{% endfor %}
-				</select>
-    			<small class="form-text text-muted">relacionar persona demandante</small>
-  			</div>
-            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
-    			<label>demandado: </label>
-                <select name="demandado" class="form-control">
-						{% for dato in datos %}
-							<option value="{{dato.id_datos}}">{{dato.nom_datos}} ( {{dato.num_dc}} )</option>
-						{% endfor %}
-				</select>
-    			<small class="form-text text-muted">relacionar persona demandado</small>
-  			</div>
-
-
-
-
-
-            <center><h4 class="text-primary">PARTICIPANTES DE EXPEDIENTE</h4></center>
-            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
-                <label>Abogado demandante: </label>
-                <select name="abo_demandante" class="form-control">
-                        {% for abogado in abogados %}
-                            <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ID: {{abogado.num_dc}}</option>
-                        {% endfor %}
-                </select>
-                <small class="form-text text-muted">relacionar persona demandante</small>
-            </div>
-            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
-                <label>Abogado demandado: </label>
-                <select name="abo_demandado" class="form-control">
-                        {% for abogado in abogados %}
-                            <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ( {{abogado.num_dc}} )</option>
-                        {% endfor %}
-                </select>
-                <small class="form-text text-muted">relacionar persona demandado</small>
+                <div class="panel-body">
+                    <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <label>NUMERO DE EXPEDIENTE: </label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-archive-o" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="expediente">
+                        </div>
+                        <small class="form-text text-muted">expediente del proceso que se va a crear</small>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+                        <label>CIUDAD: </label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-location-arrow" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="ciudad">
+                        </div>
+                        <small class="form-text text-muted">ciudad donde se llevara acabo el proceso</small>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
+                        <label>VALOR: </label>
+                        <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="form-control" name="valor">
+                                                <span class="input-group-addon">.oo</span>
+                        </div>
+                        <small class="form-text text-muted">Valor a pagar el demandado</small>
+                    </div>  
+                    <button id="sig1" class="btn btn-primary ">Siguiente</button>   
+                </div>  
             </div>
 
-            <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
-                <label>juez del proceso: </label>
-                <select name="juez" class="form-control">
-                        {% for juez in jueces %}
-                            <option value="{{juez.id_datos}}">{{juez.nom_datos}} ID: {{juez.num_dc}}</option>
-                        {% endfor %}
-                </select>
-                <small class="form-text text-muted">relacionar persona demandante</small>
+
+
+
+            <div class="panel panel-warning ocultar" id="form_section2">
+                <div class="panel-heading ">
+                    <h4 class="text-center">IMPLICADOS DIRECTOS DE EXPEDIENTE</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label>demandante: </label>
+                        <select name="demandante" class="form-control">
+                                {% for dato in datos %}
+                                    <option value="{{dato.id_datos}}">{{dato.nom_datos}} ID: {{dato.num_dc}}</option>
+                                {% endfor %}
+                        </select>
+                        <small class="form-text text-muted">relacionar persona demandante</small>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <label class="control-label">demandado: </label>
+                        <div class="form-control" data-toggle="modal" data-target="#modal-demandado"></div>
+                        <small class="form-text text-muted">relacionar persona demandado</small>
+                    </div>
+                    <button id="ant2" class="btn btn-danger ">Anterior</button>
+                    <button id="sig2" class="btn btn-primary ">Siguiente</button>   
+                </div>  
             </div>
 
-    
-            <br>
-                <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <button class="btn btn-primary" id="storeProceso">Nuevo Proceso</button>						  	
+            <div class="panel panel-primary ocultar" id="form_section3">
+                <div class="panel-heading ">
+                    <h4 class="text-center">PARTICIPANTES DE EXPEDIENTE</h4>
                 </div>
+                <div class="panel-body">
+                    <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                        <label>Abogado demandante: </label>
+                        <select name="abo_demandante" class="form-control">
+                                {% for abogado in abogados %}
+                                    <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ID: {{abogado.num_dc}}</option>
+                                {% endfor %}
+                        </select>
+                        <small class="form-text text-muted">relacionar persona demandante</small>
+                    </div>
+                    <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                        <label>Abogado demandado: </label>
+                        <select name="abo_demandado" class="form-control">
+                                {% for abogado in abogados %}
+                                    <option value="{{abogado.id_datos}}">{{abogado.nom_datos}} ( {{abogado.num_dc}} )</option>
+                                {% endfor %}
+                        </select>
+                        <small class="form-text text-muted">relacionar persona demandado</small>
+                    </div>
+
+                    <div class="form-group col-xs-9 col-sm-4 col-md-4 col-lg-4">
+                        <label>juez del proceso: </label>
+                        <select name="juez" class="form-control">
+                                {% for juez in jueces %}
+                                    <option value="{{juez.id_datos}}">{{juez.nom_datos}} ID: {{juez.num_dc}}</option>
+                                {% endfor %}
+                        </select>
+                        <small class="form-text text-muted">relacionar persona demandante</small>
+                    </div>
+                    <button id="ant3" class="btn btn-danger ">Anterior</button>
+                    <button class="btn btn-primary" id="storeProceso">Nuevo Proceso</button>   
+                </div>  
+            </div> 
     
         </form>
 	</div>
 
+
+    <!-- Modal -->
+<div class="modal fade" id="modal-demandado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Relaciona un participante al proceso</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form-create">
+             <div class="row">
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <label>NOMBRE O RAZON SOCIAL: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="nom">
+                </div>
+                <small class="form-text text-muted">Nombre completo de el participante</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+                <label>NUMERO IDENTIFICACION: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-cc" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="dc">
+                </div>
+                <small class="form-text text-muted">identificacion participante del proceso</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
+                <label>PERSONA LEGAL: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                    <select name="persona" class="form-control" >
+                        <option value="NATURAL">NATURAL</option>
+                        <option value="JURIDICA">JURIDICA</option>
+                    </select>
+                </div>
+                <small class="form-text text-muted">selecciona si el participante es persona juridica o natural</small>
+            </div>
+            </div>
+             
+
+            <div class="row">
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <label>CORREO ELECTRONICO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="email">
+                </div>
+                <small class="form-text text-muted">correo electronico del participante a ingresar</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+                <label>DIRECCION: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="direccion">
+                </div>
+                <small class="form-text text-muted">Direccion de residencia del participante</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
+                <label>TELEFONO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="telefono">
+                </div>
+                <small class="form-text text-muted">telefono  del participante</small>
+            </div>
+            </div>
+             
+           
+
+            <div class="row">
+                <div class="form-group">
+                    <button class="btn btn-primary" id="storeParticipante">Nuevo Participante</button>                          
+                </div>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Relacionar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <script>
     $('#storeProceso').click(function(event){event.preventDefault();  storeProceso(); });
     $('#cargarProceso').click(function(){  cargarProceso(); });
+
+    ///////secciones del formulario////
+    $('#sig1').click(function(event){ event.preventDefault(); $('#form_section1').hide(); $('#form_section2').show(); });
+
+    $('#ant2').click(function(event){ event.preventDefault(); $('#form_section2').hide(); $('#form_section1').show(); });
+    $('#sig2').click(function(event){ event.preventDefault(); $('#form_section2').hide(); $('#form_section3').show(); });
+
+    $('#ant3').click(function(event){ event.preventDefault(); $('#form_section3').hide(); $('#form_section2').show(); });
+
+
+
     </script>

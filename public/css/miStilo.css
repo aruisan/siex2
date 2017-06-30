@@ -27,3 +27,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 #perfil{
 	background: rgba(255,255,255,.6);
 }
+
+.ocultar{
+	display: none;
+}

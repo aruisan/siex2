@@ -9,7 +9,7 @@ if($_POST['metodo'] == "storeUsuario"){
 	IngresarUsuario($twig, $conexion, $_POST['id']);
 
 }elseif($_POST['metodo'] == "loguearse"){
-	IngresarUsuario($twig, $conexion, $_POST['nick'], $_POST['password']);
+	loguearUsuario($twig, $conexion, $_POST['nick'], $_POST['password']);
 }
 
 
@@ -37,15 +37,18 @@ function crearDatos($twig, $conexion, $nom, $dc, $persona, $email, $direccion, $
 
 
 
-function IngresarUsuario($twig, $conexion, $nick, $password)
+function loguearUsuario($twig, $conexion, $nick, $password)
 {
-	$sql= "SELECT * usuarios WHERE nick = '$nick' AND password = '$password'";
+	$sql= "SELECT * FROM usuarios WHERE nick = '$nick' AND password = '$password'";
 	$consulta = $conexion->query($sql);
+	echo $consulta->num_rows;
+	$numfilas = $result->num_rows;
 	if($consulta->num_rows > 0)
 	{
 		$datos = $consulta->fetch_object();
 		session_start();
-		echo $_SESSION['datos'] = $datos->id_datos;
+		echo $_SESSION['id_secre'] = $datos->id_datos;
+		header('location:../../views/predial.php');
 	}else{
 		echo "no see encontro ni mierda";
 	}

@@ -31,14 +31,15 @@
     <div class="login-box">
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form  method="POST" action="core/controllers/usuariosController.php">
                     <div class="msg">Ingresa tus datos</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="nick" placeholder="Usuario" required autofocus>
+                            <input type="text" class="form-control" name="nick" placeholder="Usuario" required >
+                            <input type="hidden" name="metodo" value="loguearse">
                         </div>
                     </div>
                     <div class="input-group">
@@ -72,17 +73,6 @@
     <!-- Custom Js -->
     <script src="public/assets/sb-admin/js/logueo-admin.js"></script>
     <script type="text/javascript">
-    $('#loguearse').on('click', function(){ loguearseUsuario(); });
-
-    function loguearseUsuario()
-    {
-        var url = "core/controllers/usuariosController.php";
-        var metodo = "loguearse";
-
-        $.post(url,{metodo:metodo}, function(data){
-        console.log(data);
-        });
-    }
 
     </script>
 </body>
