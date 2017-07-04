@@ -17,7 +17,7 @@ if($_POST['metodo'] == "indexParticipante"){
 }elseif($_POST['metodo'] == "updateParticipante"){	
 	updateParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono'], $_POST['id']);
 
-if($_POST['metodo'] == "indexUsuarioParticipante"){
+}elseif($_POST['metodo'] == "indexUsuarioParticipante"){
 	indexUsuarioParticipante($twig, $conexion);
 
 }else{

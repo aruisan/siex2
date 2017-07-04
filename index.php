@@ -22,7 +22,7 @@
          <div class="container">
             <div class="header-content">
                <a href="index.php">
-                  <img src="public/img/logo.png" width="150" alt="site identity" /><h5 style="color: white;">Sistema Integral de EXpedientes</h5>
+                  <img src="public/img/logo.png" width="150" alt="site identity" /><h5 style="color: white;">Sistema Integral de EXpedientes y archivos</h5>
                </a>
 
                <nav class="site-nav">
@@ -31,9 +31,7 @@
                         <a href="#">Contactenos</a>
                      </li>
                   </ul>
-
-                  <a href="entrar.php" class="btn btn-outlined">Entrar</a>
-                  <a href="registrarse.php" class="btn btn-outlined">Registrarse</a>
+                  <a href="views" class="btn btn-outlined">Entrar</a>
                </nav>
             </div>
          </div>
