@@ -61,7 +61,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="titulo_menu" class="navbar-brand" href="index.html">expedientes</a>
+                <a id="titulo_menu" class="navbar-brand" href="#"><?= $_GET['nom_user']?></a>
             </div>
             <!-- /.navbar-header -->
 

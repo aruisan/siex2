@@ -35,7 +35,7 @@
                     <div class="msg">Ingresa tus datos</div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">USUARIO</i>
                         </span>
                         <div class="form-line">
                             <input type="text" class="form-control" name="nick" placeholder="Usuario" required >
@@ -44,7 +44,7 @@
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
+                            <i class="material-icons">PASSWORD</i>
                         </span>
                         <div class="form-line">
                             <input type="password" class="form-control" name="password" placeholder="Password" required>

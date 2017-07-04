@@ -39,16 +39,15 @@ function crearDatos($twig, $conexion, $nom, $dc, $persona, $email, $direccion, $
 
 function loguearUsuario($twig, $conexion, $nick, $password)
 {
-	$sql= "SELECT * FROM usuarios WHERE nick = '$nick' AND password = '$password'";
+	$sql= "SELECT a.id_usuarios, b.nom_datos nombre FROM usuarios a, datos b WHERE a.nick = '$nick' AND a.password = '$password' AND a.id_datos = b.id_datos";
 	$consulta = $conexion->query($sql);
-	echo $consulta->num_rows;
-	$numfilas = $result->num_rows;
 	if($consulta->num_rows > 0)
 	{
 		$datos = $consulta->fetch_object();
 		session_start();
-		echo $_SESSION['id_secre'] = $datos->id_datos;
-		header('location:../../views/predial.php');
+		$_SESSION['id_secre'] = $datos->id_usuarios;
+
+		header('location:../../views/secretaria.php?nom_user='.$datos->nombre);
 	}else{
 		echo "no see encontro ni mierda";
 	}
