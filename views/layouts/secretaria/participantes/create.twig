@@ -1,5 +1,5 @@
 <!-- Page Heading -->
-	<div class="row">
+	<div class="row"  id="migas">
     	<div class="col-lg-12">
         	<ol class="breadcrumb">
                 <li> <button class="btn btn-link" id="cargarParticipantes">Ver Participantes</button></li>       
@@ -11,6 +11,15 @@
 	<div class="col-md-12">
 		<form id="form-create">
              <div class="row">
+              <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
+                <label>NUMERO IDENTIFICACION: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-cc" aria-hidden="true"></i></span>
+                    <input type="number" class="form-control" name="dc" id="dc">
+                    <input type="hidden" name="id">
+                </div>
+                <small class="form-text text-muted">identificacion participante del proceso</small>
+            </div>
             <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-4">
     			<label>NOMBRE O RAZON SOCIAL: </label>
                 <div class="input-group">
@@ -19,19 +28,11 @@
                 </div>
     			<small class="form-text text-muted">Nombre completo de el participante</small>
   			</div>
-            <div class="form-group col-xs-12 col-sm-4 col-md-3 col-lg-4">
-                <label>NUMERO IDENTIFICACION: </label>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-cc" aria-hidden="true"></i></span>
-    			    <input type="text" class="form-control" name="dc">
-                </div>
-    			<small class="form-text text-muted">identificacion participante del proceso</small>
-  			</div>
             <div class="form-group col-xs-12 col-sm-2 col-md-3 col-lg-4">
     			<label>PERSONA LEGAL: </label>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-university" aria-hidden="true"></i></span>
-                    <select name="persona" class="form-control" >
+                    <select name="persona" class="form-control" id="persona">
                         <option value="NATURAL">NATURAL</option>
                         <option value="JURIDICA">JURIDICA</option>
                     </select>
@@ -72,6 +73,7 @@
 
             <div class="row">
                 <div class="form-group">
+                    <button class="btn btn-danger ocultar" id="cancelarStoreParticipante">Cancelar</button>  
                     <button class="btn btn-primary" id="storeParticipante">Nuevo Participante</button>						  	
                 </div>
             </div>
@@ -79,6 +81,7 @@
 	</div>
 
     <script>
-    $('#storeParticipante').click(function(event){event.preventDefault();  storeParticipante(); });
-    $('#cargarParticipantes').click(function(){  cargarParticipantes(); });
+    $('#dc').change(function(){ validarDC(); });
+    $('#storeParticipante').click(function(event){ event.preventDefault();  storeParticipante(); });
+    $('#cargarParticipantes, #cancelarStoreParticipante').click(function(event){ event.preventDefault();  cargarParticipantes(); });
     </script>

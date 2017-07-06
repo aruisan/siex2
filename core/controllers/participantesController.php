@@ -14,11 +14,18 @@ if($_POST['metodo'] == "indexParticipante"){
 }elseif($_POST['metodo'] == "storeParticipante"){	
 	storeParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono']);
 	
+}elseif($_POST['metodo'] == "storeParticipanteProceso"){	
+	storeParticipanteProceso($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono']);
+
 }elseif($_POST['metodo'] == "updateParticipante"){	
 	updateParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono'], $_POST['id']);
 
 }elseif($_POST['metodo'] == "indexUsuarioParticipante"){
 	indexUsuarioParticipante($twig, $conexion);
+
+
+}elseif($_POST['metodo'] == "validarDcParticipante"){
+	validarDcParticipante($twig, $conexion, $_POST['dc']);
 
 }else{
     header('location:../../index.php');
@@ -81,7 +88,21 @@ function storeParticipante($twig, $conexion, $nom, $dc, $persona, $email, $direc
 
 }
 
+function storeParticipanteProceso($twig, $conexion, $nom, $dc, $persona, $email, $direccion, $telefono)
+{
+	$sql = "INSERT INTO datos (nom_datos, num_dc, email, direccion, telefono, tipo_persona) 
+							VALUES('$nom', $dc, '$email', '$direccion', '$telefono', '$persona')";
+	$ingresar = $conexion->query($sql);
 
+	if($ingresar)
+	{
+		$sql2 = "SELECT * FROM datos WHERE num_dc = $dc";
+		$consulta = $conexion->query($sql2);
+		$datos = $consulta->fetch_object();
+		echo json_encode($datos);
+	}
+
+}
 
 
 
@@ -121,5 +142,17 @@ function updateParticipante($twig, $conexion, $nom, $dc, $persona, $email, $dire
 	}
 
 
+function validarDcParticipante($twig, $conexion, $dc)
+{
+	$datos = 0;
+	$sql = "SELECT * FROM datos WHERE num_dc = $dc";
+	$consulta = $conexion->query($sql);
+	if($consulta->num_rows > 0)
+	{
+	 $datos = $consulta->fetch_object(); 
+	}
+	echo json_encode($datos);
+
+}
 
 ?>
