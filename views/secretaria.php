@@ -88,18 +88,34 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="" id="procesos"><i class="fa fa-indent fa-fw"></i> Procesos </a>
+                        <li class="active">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> General<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse in" aria-expanded="true">
+                                <li>
+                                    <a href="" id="participantes"><i class="fa fa-address-card-o"></i> Participantes </a>
+                                </li>
+                                <li>
+                                    <a href="" id="relaciones"><i class="fa fa-sitemap fa-fw"></i> Relaciones </a>
+                                </li>
+                                 <li>
+                                    <a href="" id="usuarios"><i class="fa fa-user-plus fa-fw"></i> Usuarios </a>
+                                </li> 
+                            </ul>
+                            <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="" id="participantes"><i class="fa fa-address-card-o"></i> Participantes </a>
-                        </li>
-                        <li>
-                            <a href="" id="relaciones"><i class="fa fa-sitemap fa-fw"></i> Relaciones </a>
-                        </li>
-                         <li>
-                            <a href="" id="participantes"><i class="fa fa-user-plus fa-fw"></i> Usuarios </a>
-                        </li>
+
+                        <li class="active">
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Cobro Predial<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse in">
+                                <li>
+                                    <a href="" id="proceso_predial"><i class="fa fa-indent fa-fw"></i> Proceso Predial </a>
+                                </li>
+                                <li>
+                                    <a href="" id="predios"><i class="fa fa-indent fa-fw"></i> Predios </a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>            
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -151,10 +167,10 @@
     <script type="text/javascript" src="../public/js/archivo.js"></script>
     <script type="text/javascript" src="../public/js/participante.js"></script>
     <script type="text/javascript" src="../public/js/relacion.js"></script>
+    <script type="text/javascript" src="../public/js/predios.js"></script>
     
 
     
 </body>
 
 </html>
-

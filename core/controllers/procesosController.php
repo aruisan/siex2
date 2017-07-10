@@ -94,6 +94,7 @@ function createProceso($twig, $conexion)
 
 function editProceso($twig, $conexion, $id)
 {
+
 		$sql = "SELECT procesos.*, tipo_procesos.nom_tipo_proceso 
 				FROM procesos, tipo_procesos 
 				WHERE id_proceso = $id 
@@ -101,7 +102,7 @@ function editProceso($twig, $conexion, $id)
 		$consulta = $conexion->query($sql);
 		$proceso = $consulta->fetch_object();
 		$di = $proceso->num_expediente;
-
+		
 		$participantes = participantesProceso($conexion, $di );
 
 

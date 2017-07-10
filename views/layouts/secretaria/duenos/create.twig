@@ -1,0 +1,101 @@
+<!-- Page Heading -->
+	<div class="row"  id="migas">
+    	<div class="col-lg-12">
+        	<ol class="breadcrumb">
+                <li> <button class="btn btn-link" id="cargarPredios">Ver Predios</button></li>       
+            	<li class="active">Formulario Creacion de Predios</li>
+        	</ol>
+    	</div>
+	</div>
+
+	<div class="col-md-12">
+		<form id="form-create">
+
+              <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <label>FICHA CATASTRAL: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-cc" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="catastral" id="catastral">
+                    <input type="hidden" name="id">
+                </div>
+                <small class="form-text text-muted">Numero de la ficha catastral del predio</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    			<label>MATRICULA INMOVILIARIA: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-creative-commons" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="matricula" >
+                </div>
+    			<small class="form-text text-muted">numero de matricula inmoviliaria del predio</small>
+  			</div>
+             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <label>EXPEDIENTE: </label>
+                <select name="expediente" class="form-control">
+                    {% for expediente in expedientes %}
+                        <option value="{{expediente.id_proceso}}">{{expediente.num_expediente}}</option>
+                    {% endfor %}
+                </select>
+                <small class="form-text text-muted">Proceso relacionado al predio</small>
+            </div>
+            
+             
+
+           
+            <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    			<label>ULTIMO AÑO DECLARADO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-hourglass" aria-hidden="true"></i></span>
+    			    <input type="text" class="form-control" name="age_declarado">
+                </div>
+    			<small class="form-text text-muted">Ultimo año declarado del predio</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    			<label>FECHA ULTIMO PAGO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+    			    <input type="date" class="form-control" name="ff_pago">
+                </div>
+    			<small class="form-text text-muted">Fecha del ultimo pago del predio</small>
+  			</div>
+            <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4">
+    			<label>VALOR DECLARADO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+    			    <input type="text" class="form-control" name="valor">
+                </div>
+    			<small class="form-text text-muted">Precio del valor declarado al predio</small>
+  			</div>
+            
+    
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>BARRIO: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-o" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="barrio" >
+                </div>
+                <small class="form-text text-muted">Barrio del predio</small>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <label>DIRECCION: </label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" name="direccion" >
+                    <input type="hidden" name="id">
+                </div>
+                <small class="form-text text-muted">Direccion del predio</small>
+            </div>
+             
+            
+                <div class="form-group">
+                    <button class="btn btn-danger ocultar" id="cancelarStorePredio">Cancelar</button>  
+                    <button class="btn btn-primary" id="storePredio">Nuevo Predio</button>						  	
+                </div>
+           
+        </form>
+	</div>
+
+    <script>
+    $('#dc').change(function(){ validarDC(); });
+    $('#storePredio').click(function(event){ event.preventDefault();  storePredio(); });
+    $('#cargarPredios, #cancelarStorePredio').click(function(event){ event.preventDefault();  cargarPredios(); });
+    </script>

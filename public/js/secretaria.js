@@ -4,9 +4,11 @@ $(document).ready(function(){
 
 
 //------------------------function botonesdel menu------------
-$('#procesos').click(function(event){event.preventDefault(); cargarProcesos(); });
 $('#participantes').click(function(event){event.preventDefault(); cargarParticipantes(); });
 $('#relaciones').click(function(event){event.preventDefault(); cargarRelaciones(); });
+
+$('#proceso_predial').click(function(event){event.preventDefault(); cargarProcesos(); });
+$('#predios').click(function(event){event.preventDefault(); cargarPredios(); });
 //$('#usuarios').click(function(event){event.preventDefault(); cargarusuarios(); });
 //$('#createProceso').click(function(){ cargarCreateProcesos(); });
 

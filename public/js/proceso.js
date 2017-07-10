@@ -66,6 +66,7 @@
 
         $.post(url,{metodo:metodo}, function(data)
         {
+            console.log(data);
         $(".modal-body").html(data);
         $('#cancelarStoreParticipante, #migas, #storeParticipante').remove();
         $('#relacionar2').show();
