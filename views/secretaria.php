@@ -97,9 +97,6 @@
                                 <li>
                                     <a href="" id="relaciones"><i class="fa fa-sitemap fa-fw"></i> Relaciones </a>
                                 </li>
-                                 <li>
-                                    <a href="" id="usuarios"><i class="fa fa-user-plus fa-fw"></i> Usuarios </a>
-                                </li> 
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -124,10 +121,29 @@
         </nav>
 
         <div id="page-wrapper">
-            <input type="hidden" id="id" value="<?= $id; ?>">
+           
            
         </div>
         <!-- /#page-wrapper -->
+         <!-- Modal -->
+        <div class="modal fade" id="modal-dueno" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Dueños del Predio</h4>
+              </div>
+              <div class="modal-body">
+                <!--  formulario de participantes -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary ocultar" data-dismiss="modal" id="relacionar">Relacionar</button>
+                <button type="button" class="btn btn-primary " data-dismiss="modal" id="relacionar2">Relacionar y Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
     </div>
     <!-- /#wrapper -->

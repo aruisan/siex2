@@ -66,7 +66,7 @@
 
         $.post(url,{metodo:metodo}, function(data)
         {
-            console.log(data);
+    // console.log(data);
         $(".modal-body").html(data);
         $('#cancelarStoreParticipante, #migas, #storeParticipante').remove();
         $('#relacionar2').show();
@@ -80,8 +80,8 @@
         var nom = $('input[name=nom]').val();
         var dc = $('input[name=dc]').val();
 
-        $('#demandado').val(nom+' ID: '+dc);
-        $('input[name=demandado]').val(id);
+        $('#demandado, #dueno').val(nom+' ID: '+dc);
+        $('input[name=demandado], input[name=dueno]').val(id);
     }
 
     function storeParticipanteProceso()
@@ -94,7 +94,29 @@
                 console.log(data);
             datos = jQuery.parseJSON(data);
 
-            $('#demandado').val(datos.nom_datos+' ID: '+datos.num_dc);
-            $('input[name=demandado]').val(datos.id_datos);
+            $('#demandado, #dueno').val(datos.nom_datos+' ID: '+datos.num_dc);
+            $('input[name=demandado], input[name=dueno]').val(datos.id_datos);
             });
+    }
+
+    function agregarPropietarioPredioProceso(id)
+    {
+        var metodo = "indexPropietarioPredio";
+        var url = "../core/controllers/prediosController.php";
+        $.post(url,{id:id, metodo:metodo}, function(data){
+        $("#page-wrapper").html(data);
+        $('#storeParticipantePredio').hide();
+        });
+    }
+
+    function storeParticipantePredioProceso(id)
+    {
+        var datos = $('#form-create-dueno').serialize();
+        var url = "../core/controllers/prediosController.php";
+        var metodo = "metodo=storeParticipantePredio";
+        var carga =  "carga=proceso";   
+
+          $.post(url,datos+'&'+carga+'&'+metodo+'&id='+id, function(data){
+        $("#page-wrapper").html(data);
+        });
     }

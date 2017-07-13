@@ -76,6 +76,7 @@ function cargarUsuariosParticipantes()
 
 ///////////////otras funciones
 
+
 function validarDC()
 {
         var url = "../core/controllers/participantesController.php";
@@ -108,4 +109,6 @@ function validarDC()
                 }  
         });
 }
+
+
 

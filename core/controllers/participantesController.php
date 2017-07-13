@@ -23,12 +23,11 @@ if($_POST['metodo'] == "indexParticipante"){
 }elseif($_POST['metodo'] == "indexUsuarioParticipante"){
 	indexUsuarioParticipante($twig, $conexion);
 
-
 }elseif($_POST['metodo'] == "validarDcParticipante"){
 	validarDcParticipante($twig, $conexion, $_POST['dc']);
 
 }else{
-    header('location:../../index.php');
+   
 }
 
 

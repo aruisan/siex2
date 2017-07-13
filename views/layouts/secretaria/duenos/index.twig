@@ -6,14 +6,19 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
                             <input type="hidden" name="dueno">
-                            <input type="text" class="form-control" id="dueno" data-toggle="modal" data-target="#modal-dueno">                                    
+                            <input type="text" class="form-control" id="dueno" data-toggle="modal" data-target="#modal-dueno">
+                                                
                         </div>
                         <div class="input-group">
                             <input type="text" class="form-control" name="porcentaje"  placeholder="Porcentaje">
                             <span class="input-group-addon">%</span>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="storeParticipantePredio">Relacionar Dueño</button>
+                        <button type="submit" class="btn btn-primary" id="storeParticipantePredio">Relacionar Dueño1</button>
+                        <button type="submit" class="btn btn-primary" id="storeParticipantePredioProceso">Relacionar Dueño2</button>
       </form>
+      {% if cuadro == 0  %}
+      	<h2 class="text-center">NO TIENE RELACIONADO DUEÑOS EL PREDIO</h2>
+      {% elseif cuadro == 1 %}
 		<table id="table-duenos" class="table table-condensed table-hover table-bordered table-responsive">
 		 	<thead>
 		 		<th>DUEÑO</th>
@@ -28,33 +33,19 @@
 		 		{% endfor %}
 		 	</tbody>
 		 </table>
+	 {% endif %}
 	</div>
 
 
-
-		 <!-- Modal -->
-	<div class="modal fade" id="modal-dueno" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
-	  <div class="modal-dialog modal-lg" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Dueños del Predio</h4>
-	      </div>
-	      <div class="modal-body">
-	        <!--  formulario de participantes -->
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
+		
 
 	 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
-   $(' #dueno').click(function(){ cargarFormParticipantes(); });
-    $('#storeParticipantePredio').click(function(){  storeParticipantePredio({{id}}); });
+    $('#relacionar').click(function(){ relacionar();});
+    $('#relacionar2').click(function(){ storeParticipanteProceso(); });
+   	$('#dueno').click(function(){ cargarFormParticipantes(); });
+    $('#storeParticipantePredio').click(function(event){event.preventDefault();  storeParticipantePredio({{id}}); });
+    $('#storeParticipantePredioProceso').click(function(event){event.preventDefault();  storeParticipantePredioProceso({{id}}); });
     $('.editPredio').click(function(){ var id = $(this).attr('id'); cargarEditPredio(id); });
     $('.agregarPropietario').click(function(){ var id = $(this).attr('id'); agregarPropietarioPredio(id); });
 

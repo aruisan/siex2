@@ -31,7 +31,7 @@ if($_POST['metodo'] == "indexPredio"){
 	indexPropietarioPredio($twig, $conexion, $_POST['id']);
 
 }elseif($_POST['metodo'] == "storeParticipantePredio"){
-	storeParticipantePredio($twig, $conexion, $_POST['nom'], $_POST['porcentaje'], $_POST['id']);
+	storeParticipantePredio($twig, $conexion, $_POST['dueno'], $_POST['porcentaje'], $_POST['id'], $_POST['carga']);
 
 }else{
     header('location:../../index.php');
@@ -82,16 +82,21 @@ function indexPropietarioPredio($twig, $conexion, $id)
 	$sql="SELECT datos.nom_datos ,participantes_predios.porcentaje FROM participantes_predios, datos where id_predio = $id AND participantes_predios.id_participante = datos.id_datos" ;
 	$consulta = $conexion->query($sql);
 	if($consulta->num_rows > 0){
-
 		while($datos = $consulta->fetch_object())
 				{
 					$duenos[] = $datos;
 				}
+			$cuadro = 1;
 
-		echo $twig->render('layouts/secretaria/duenos/index.twig', compact('duenos', 'id'));
 	}else{
-		echo "no ahi dueños del predio";
+		$cuadro = 0;
 	}
+
+
+
+			echo $twig->render('layouts/secretaria/duenos/index.twig', compact('duenos', 'id', 'cuadro'));
+
+
 }
 //////////////////////crud procesos///////////////////////////////////
 
@@ -131,11 +136,27 @@ function storeParticipanteProceso($twig, $conexion, $nom, $dc, $persona, $email,
 }
 
 
-function storeParticipantePredio($twig, $conexion, $dueno, $porcentaje, $id)
+function storeParticipantePredio($twig, $conexion, $dueno, $porcentaje, $id, $carga)
 {
 	$sql = "INSERT INTO `participantes_predios`(`id_predio`, `id_participante`, `porcentaje`) VALUES ($id, $dueno, $porcentaje )";
-	$insertar = $conexion->query($sql);
+	$ingresar = $conexion->query($sql);
+	if($ingresar)
+	{
+		$clase = "text-success";
+		$respuesta = "Dueño relacionado al predio correctamente";
+	}else{
+		$clase = "text-danger";
+		$respuesta = "error al relacionar Dueño al predial ";
+	}
 
+	if($carga == 'predio'){
+		$pagina = "agregarPropietarioPredio(".$id.");";
+	}elseif($carga == 'proceso'){
+		$pagina = "agregarParticipantePredioProceso(".$id.");";
+	}
+	
+
+	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 	
 }
 
@@ -157,7 +178,7 @@ function updatePredio($twig, $conexion, $catastral, $matricula, $expediente, $ag
 		$clase = "text-danger";
 		$respuesta = "error al Editar el predio ";
 	}
-	$pagina = "cargarParticipantes();";
+	$pagina = "cargarPredios();";
 
 	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 

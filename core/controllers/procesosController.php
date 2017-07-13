@@ -190,15 +190,19 @@ function storeProceso($twig, $conexion, $expediente, $ciudad, $valor, $demandant
 			$proceso = $consulta->fetch_object();
 			$id_proceso = $proceso->id_proceso;*/
 
-			$sql3 = "INSERT INTO relaciones_procesos (expediente, id_datos, cargo)
+			$sql2 = "INSERT INTO relaciones_procesos (expediente, id_datos, cargo)
 						VALUES('$expediente', $demandante, 'DEMANDANTE'),
 								('$expediente', $demandado, 'DEMANDADO'),
 								('$expediente', $abo_demandante, 'ABOGADO DEMANDANTE'),
 								('$expediente', $abo_demandado, 'ABOGADO DEMANDADO'),
 								('$expediente', $juez, 'JUEZ')";
-			$insertar2 = $conexion->query($sql3);
+			$insertar2 = $conexion->query($sql2);
 			if($insertar2)
 			{
+				$sql3= "SELECT id_proceso FROM procesos WHERE num_expediente = '$expediente'";
+				$consulta3 = $conexion->query($sql3);
+				$datos = $consulta3->fetch_object();
+
 				$clase = "text-success";
 				$respuesta = "Proceso creado correctamente";
 			}else{
@@ -210,7 +214,7 @@ function storeProceso($twig, $conexion, $expediente, $ciudad, $valor, $demandant
 			$respuesta = "error en el proceso al crear el proceso ";
 		}
 
-		$pagina = "cargarCreateProceso();";
+		$pagina = "agregarPropietarioPredioProceso(".$datos->id_proceso.");";
 
 		echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 
