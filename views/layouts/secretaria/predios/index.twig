@@ -9,6 +9,7 @@
 	</div>
 
 	<div class="col-md-12">
+		<button id="createPredioProceso" class="btn btn-primary ocultar"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Predio</button>
 		<button id="createPredio" class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Nuevo Predio</button><br><br>
 		<table id="table" class="table table-condensed table-hover table-bordered table-responsive">
 		 	<thead>
@@ -63,6 +64,7 @@
         tablas();
     });
     $('#createPredio').click(function(){  cargarCreatePredio(); });
+    $('#createPredioProceso').click(function(){  cargarCreatePredioProceso({{id}}); });
     $('.editPredio').click(function(){ var id = $(this).attr('id'); cargarEditPredio(id); });
     $('.agregarPropietario').click(function(){ var id = $(this).attr('id'); agregarPropietarioPredio(id); });
 

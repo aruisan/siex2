@@ -21,6 +21,15 @@ function cargarCreatePredio()
         });
 }
 
+function cargarCreatePredioProceso(id)
+{
+       var metodo = "createPredioProceso";
+
+        $.post(url,{metodo:metodo, id:id}, function(data){
+        $("#page-wrapper").html(data);
+        });
+}
+
 function cargarEditPredio(id)
 {	
         var metodo = "editPredio";
@@ -74,7 +83,6 @@ function storeParticipantePredio(id)
         var datos = $('#form-create-dueno').serialize();
         var metodo = "metodo=storeParticipantePredio";
         var carga =  "carga=predio"; 
-        alert(datos);
 
           $.post(url,datos+'&'+carga+'&'+metodo+'&id='+id, function(data){
         $(".modal-body-1").html(data);

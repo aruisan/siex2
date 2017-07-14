@@ -8,11 +8,14 @@ if($_POST['metodo'] == "indexPredio"){
 }elseif($_POST['metodo'] == "createPredio"){
 	createPredio($twig, $conexion);
 
+}elseif($_POST['metodo'] == "createPredioProceso"){
+	createPredioProceso($twig, $conexion, $_POST['id']);
+
 }elseif($_POST['metodo'] == "editPredio"){	
 	editPredio($twig, $conexion, $_POST['id']);
 	
 }elseif($_POST['metodo'] == "storePredio"){	
-	storePredio($twig, $conexion, $_POST['catastral'], $_POST['matricula'], $_POST['expediente'], $_POST['age_declarado'], $_POST['ff_pago'], $_POST['barrio'], $_POST['direccion'], $_POST['valor']);
+	storePredio($twig, $conexion, $_POST['catastral'], $_POST['matricula'], $_POST['expediente'], $_POST['age_declarado'], $_POST['ff_pago'], $_POST['barrio'], $_POST['direccion'], $_POST['valor'], $_POST['cargar']);
 	
 }elseif($_POST['metodo'] == "storeParticipanteProceso"){	
 	storeParticipanteProceso($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono']);
@@ -60,8 +63,18 @@ function indexPredios($twig, $conexion)
 function createPredio($twig, $conexion)
 {
 		$expedientes = expedientes($conexion);
+		$input = "ocultar";
+		$name_select 	= "expediente";
+		$cargar = "predio";
+		echo $twig->render('layouts/secretaria/predios/create.twig', compact('expedientes', 'input', 'name_select', 'cargar'));
+}
 
-		echo $twig->render('layouts/secretaria/predios/create.twig', compact('expedientes'));
+function createPredioProceso($twig, $conexion, $id)
+{
+		$select = "ocultar";
+		$name_input = "expediente";
+		$cargar = "proceso";
+		echo $twig->render('layouts/secretaria/predios/create.twig', compact('expedientes', 'proceso', 'id', 'select', 'name_input', 'cargar'));
 }
 
 function editPredio($twig, $conexion, $id)
@@ -100,7 +113,7 @@ function indexPropietarioPredio($twig, $conexion, $id)
 }
 //////////////////////crud procesos///////////////////////////////////
 
-function storePredio($twig, $conexion, $catastral, $matricula, $expediente, $age_declarado, $ff_pago, $barrio, $direccion, $valor)
+function storePredio($twig, $conexion, $catastral, $matricula, $expediente, $age_declarado, $ff_pago, $barrio, $direccion, $valor, $cargar)
 {
 	$sql = "INSERT INTO predial (num_ficha_catastral, num_matricula_inmoviliaria, direccion_predio, barrio_predio, valor_declarado, ultimo_age_declarado, ff_ultimo_pago, id_proceso) VALUES ('$catastral', '$matricula', '$direccion', '$barrio', $valor, '$age_declarado', '$ff_pago', '$expediente')";
 	$ingresar = $conexion->query($sql);
@@ -113,7 +126,12 @@ function storePredio($twig, $conexion, $catastral, $matricula, $expediente, $age
 		$clase = "text-danger";
 		$respuesta = "error al crear el predial ";
 	}
-	$pagina = "cargarCreatePredio();";
+	if($cargar == 'predio'){
+		$pagina = "cargarCreatePredio();";
+	}elseif($cargar == 'proceso'){
+		$pagina = 'indexPredioProceso('.$expediente.');';
+	}
+	
 
 	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 

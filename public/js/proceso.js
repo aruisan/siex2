@@ -54,7 +54,6 @@
         var datos = $('#form-create').serialize();
 
         $.post(url,datos+'&'+metodo+'&'+id, function(data){
-            console.log(data);
         $("#page-wrapper").html(data);
         });
     }
@@ -66,7 +65,6 @@
 
         $.post(url,{metodo:metodo}, function(data)
         {
-    // console.log(data);
         $(".modal-body").html(data);
         $('#cancelarStoreParticipante, #migas, #storeParticipante').remove();
         $('#relacionar2').show();
@@ -91,7 +89,6 @@
             var url = "../core/controllers/participantesController.php";
 
             $.post(url,datos+'&'+metodo, function(data){
-                console.log(data);
             datos = jQuery.parseJSON(data);
 
             $('#demandado, #dueno').val(datos.nom_datos+' ID: '+datos.num_dc);
@@ -99,6 +96,19 @@
             });
     }
 
+
+    function indexPredioProceso(id, expediente)
+    {
+        var url = "../core/controllers/procesosController.php";
+        var metodo = "indexPredioProceso";
+
+        $.post(url,{metodo:metodo, id:id, exp:expediente}, function(data){
+        $("#page-wrapper").html(data);
+        $('#createPredio').hide();
+        $('#createPredioProceso').show();
+        });
+    }
+/*
     function agregarPropietarioPredioProceso(id)
     {
         var metodo = "indexPropietarioPredio";
@@ -119,4 +129,4 @@
           $.post(url,datos+'&'+carga+'&'+metodo+'&id='+id, function(data){
         $("#page-wrapper").html(data);
         });
-    }
+    }*/

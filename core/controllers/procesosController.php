@@ -17,6 +17,9 @@ if($_POST['metodo'] == "indexProceso"){
 }elseif($_POST['metodo'] == "updateProceso"){	
 	updateProceso($twig, $conexion, $_POST['expediente'], $_POST['ciudad'], $_POST['valor'], $_POST['demandante'], $_POST['demandado'], $_POST['abo_demandante'], $_POST['abo_demandado'], $_POST['juez'], $_POST['id']);
 
+}elseif($_POST['metodo'] == "indexPredioProceso"){	
+	indexPredioProceso($conexion, $twig, $_POST['id'] );
+
 }else{
 	header('location:../../index.php');
 }
@@ -52,6 +55,17 @@ function indexProceso($twig, $conexion)
 	
 	}
 
+function indexPredioProceso($conexion, $twig, $id)
+{
+	$sql = "SELECT * FROM predial WHERE id_proceso = $id";
+		$consulta = $conexion->query($sql);
+		while($datos = $consulta->fetch_object())
+				{
+					$predios[] = $datos;
+				}
+
+		echo $twig->render('layouts/secretaria/predios/index.twig', compact('predios','id'));
+}
 
 function createProceso($twig, $conexion)
 {
@@ -214,7 +228,7 @@ function storeProceso($twig, $conexion, $expediente, $ciudad, $valor, $demandant
 			$respuesta = "error en el proceso al crear el proceso ";
 		}
 
-		$pagina = "agregarPropietarioPredioProceso(".$datos->id_proceso.");";
+		$pagina = 'indexPredioProceso('.$datos->id_proceso.');';
 
 		echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 
