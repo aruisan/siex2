@@ -110,5 +110,16 @@ function validarDC()
         });
 }
 
+function cambioPersona()
+{
+        var persona = $('#persona').val();
+
+        if(persona == 'NATURAL'){
+                $('#representante').hide();
+        }else if(persona == "JURIDICA"){
+                 $('#representante').show();
+        } 
+}
+
 
 

@@ -20,6 +20,9 @@ if($_POST['metodo'] == "indexProceso"){
 }elseif($_POST['metodo'] == "indexPredioProceso"){	
 	indexPredioProceso($conexion, $twig, $_POST['id'] );
 
+}elseif($_POST['metodo'] == "cargarAdjuntarArchivo"){	
+	cargarAdjuntarArchivo($conexion, $twig, $_POST['id'] );
+
 }else{
 	header('location:../../index.php');
 }
@@ -44,12 +47,6 @@ function indexProceso($twig, $conexion)
 					$demandantes[] = demandanteProceso($conexion, $id );
 					$demandados[] = demandadoProceso($conexion, $id );
 				}
-
-		/*foreach($procesos as $proceso){
-					$id = $proceso->id_proceso;
-					$demandantes[] = demandanteProceso($twig, $conexion, $id );
-					$demandados[] = demandadoProceso($twig, $conexion, $id );									
-		}*/
 		
 		echo $twig->render('layouts/secretaria/procesos/index.twig', compact('procesos','demandantes', 'demandados'));
 	
@@ -185,6 +182,25 @@ function editProceso($twig, $conexion, $id)
 }
 
 
+function cargarAdjuntarArchivo($conexion, $twig, $id )
+{
+		$procesos = null;
+		$sql = "SELECT procesos.*, tipo_procesos.nom_tipo_proceso 
+				FROM procesos, tipo_procesos 
+				WHERE tipo_procesos.id_tipo_proceso = procesos.id_tipo_proceso
+				AND id_proceso = $id";
+				$consulta = $conexion->query($sql);
+				$proceso = $consulta->fetch_object();
+
+					$expediente = $proceso->num_expediente;
+					$id = $proceso->id_proceso;
+
+					$demandante = demandanteProceso($conexion, $expediente );
+					$demandado = demandadoProceso($conexion, $expediente );
+					$archivos= archivosProceso($conexion, $id);
+		
+		echo $twig->render('layouts/secretaria/archivos/index.twig', compact('proceso','demandante', 'demandado', 'archivos', 'id'));
+}
 
 //////////////////////crud procesos///////////////////////////////////
 function storeProceso($twig, $conexion, $expediente, $ciudad, $valor, $demandante, $demandado, $abo_demandante, $abo_demandado, $juez)
@@ -375,6 +391,26 @@ function updateProceso($twig, $conexion, $expediente, $ciudad, $valor, $demandan
 		$sql = "SELECT id_datos, cargo 
 				FROM relaciones_procesos
 				WHERE expediente = '$id'";
+		$consulta = $conexion->query($sql);
+		if($consulta->num_rows > 0){
+	
+				while($datos = $consulta->fetch_object())
+				{
+					$participantes[] = $datos;
+				}
+		
+		}else{
+			$participantes = 0;
+		}
+
+		return $participantes;
+	}
+
+	function archivosProceso($conexion, $id )
+	{
+		$sql = "SELECT * 
+				FROM archivos
+				WHERE id_proceso = '$id'";
 		$consulta = $conexion->query($sql);
 		if($consulta->num_rows > 0){
 	

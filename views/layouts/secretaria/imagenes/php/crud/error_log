@@ -1,0 +1,8 @@
+[05-Jun-2017 10:19:52 UTC] PHP Notice:  Undefined variable: resultado in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/update.php on line 94
+[05-Jun-2017 10:20:47 UTC] PHP Warning:  mkdir(): No such file or directory in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/update.php on line 31
+[05-Jun-2017 11:09:25 UTC] PHP Warning:  mkdir(): No existe el fichero o el directorio in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 30
+[05-Jun-2017 12:01:36 UTC] PHP Notice:  Undefined index: nombre in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 7
+[05-Jun-2017 12:01:36 UTC] PHP Notice:  Undefined index: fecha in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 8
+[05-Jun-2017 12:01:36 UTC] PHP Notice:  Undefined index: archivo in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 12
+[05-Jun-2017 12:01:36 UTC] PHP Notice:  Undefined index: archivo in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 21
+[05-Jun-2017 12:01:36 UTC] PHP Notice:  Undefined variable: resultado in /home/luismoyar/public_html/siex.com.co/usuarios/secretaria/layouts/imagenes/php/crud/guardar.php on line 79

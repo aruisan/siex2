@@ -2,28 +2,26 @@
 require_once '../models/bbdd.php';
 
 
-if($_POST['metodo'] == "indexProceso"){
-	indexProceso($twig, $conexion);
 
-}elseif($_POST['metodo'] == "createProceso"){
-	createProceso($twig, $conexion);
-
-}elseif($_POST['metodo'] == "editProceso"){	
-	editProceso($twig, $conexion, $_POST['id']);
+if($_POST['metodo'] == "indexArchivo"){		
+	'';
+	
+}elseif($_POST['metodo'] == "createArchivo"){		
+	createArchivo($twig, $conexion);
 
 
-		}elseif($_POST['metodo'] == "indexArchivo"){
-			indexArchivo($twig, $conexion, $_POST['id']);
+	
+}elseif($_POST['metodo'] == "editArchivo"){			
+	editArchivo($twig, $conexion, $_POST['id']);
 
-		}elseif($_POST['metodo'] == "createArchivo"){
-			createArchivo($twig, $conexion);
-
-		}elseif($_POST['metodo'] == "editArchivo"){	
-			editArchivo($twig, $conexion, $_POST['id']);
-
-				}else{
-					header('location:../../index.php');
-				}
+	
+}elseif($_POST['metodo'] == "storeArchivo"){
+	echo "uno";			
+	storeArchivo($twig, $conexion, $_POST['nombre'], $_POST['fecha'], $_POST['id'], $_FILES['archivo']);
+	
+		}else{	
+			header('location:../../index.php');	
+		}
 
 
 
@@ -31,36 +29,14 @@ if($_POST['metodo'] == "indexProceso"){
 ///////////////////////vistas procesos/////////////////////////////
 
 
-function indexProceso($twig, $conexion)
-	{
-		$procesos = null;
-		$sql = "SELECT procesos.*, tipo_procesos.nom_tipo_proceso FROM procesos, tipo_procesos WHERE tipo_procesos.id_tipo_proceso = procesos.id_tipo_proceso";
-		$consulta = $conexion->query($sql);
-		while($datos = $consulta->fetch_object())
-				{
-					$procesos[] = $datos;
-					$id = $datos->id_proceso;
-					$demandantes[] = demandanteProceso($twig, $conexion, $id );
-					$demandados[] = demandadoProceso($twig, $conexion, $id );
-				}
-
-		/*foreach($procesos as $proceso){
-					$id = $proceso->id_proceso;
-					$demandantes[] = demandanteProceso($twig, $conexion, $id );
-					$demandados[] = demandadoProceso($twig, $conexion, $id );									
-		}*/
-		
-		echo $twig->render('layouts/secretaria/procesos/index.twig', compact('procesos','demandantes', 'demandados'));
-	
-	}
 
 
-function createProceso($twig, $conexion)
+function createArchivo($twig, $conexion)
 {
-		echo $twig->render('layouts/secretaria/procesos/create.twig');
+		echo $twig->render('layouts/secretaria/archivos/create.twig');
 }
 
-function editProceso($twig, $conexion, $id)
+function editArchivo($twig, $conexion, $id)
 {
 		$sql = "SELECT proceso.*, tipo_proceso.nom_tipo_proceso FROM proceso, tipo_proceso WHERE id_proceso = $id AND tipo_proceso.id_tipo_proceso = proceso.id_tipo_proceso";
 		$consulta = $conexion->query($sql);
@@ -73,29 +49,71 @@ function editProceso($twig, $conexion, $id)
 
 //////////////////////crud procesos///////////////////////////////////
 
+function storeArchivo($twig, $conexion, $nombre, $fecha, $id, $archivo)
+{
+	echo "dos";
+	setlocale(LC_ALL,"es_ES");
+	$ff_load = date('Y/m/d');
 
+	$permitidos = array('aplication/pdf');
+	$limite = 2000;
+
+
+	if($archivo['error']>0)
+	{
+		$clase = "text-danger";
+		$respuesta = "el archivo tiene errores ";
+	}else{//else de if error
+
+		echo "tres";
+		if(in_array($archivo['type'], $permitidos) && $archivo['size']<= $limite_kb * 1048576)
+		{
+			$ruta = '../../files/'.$id.'/';
+			$pdf = $ruta.$archivo["name"];
+			$taru = $id.'/'.$archivo['name'];
+
+			if(file_exists($ruta))
+			{
+				echo "cuatro";
+				mkdir($ruta);
+			}
+
+			if(!file_exists($pdf))
+			{
+				echo "cinco";
+				$sql = "INSERT INTO archivo (nom_archivo, ff_file, ff_load, ruta, id_proceso) VALUES ('$nombre', '$fecha', '$ff_load', '$taru', $id)";
+				$insertar = $conexion->query($sql);
+
+				if($insertar)
+				{echo "seis";
+					$resultado = @move_uploaded_file($archivo["tmp_name"], $pdf);
+					if($resultado)
+					{
+						$clase = "text-success";
+						$respuesta = "Archivo Adjuntado correctamente";
+					}else{
+						$clase = "text-danger";
+						$respuesta = "error al subir archivo en elservidor ";
+					}
+				}else{
+					$clase = "text-danger";
+					$respuesta = "error al crear datos del archivo en la bbdd ";
+				}
+			}
+
+			
+		}
+	}//endif de error
+	$pagina = 'cargarAdjuntarArchivo('.$id.');';
+
+	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
+}
 
 /////////////////////function internas//////////////////////////
-	function demandanteProceso($twig, $conexion, $id)
-	{
-		$sql = "SELECT datos.nom_datos, datos.num_dc, relaciones_procesos.id_proceso  
-				FROM relaciones_procesos, datos 
-				WHERE id_proceso = $id AND cargo = 'demandante' 
-				AND datos.id_datos = relaciones_procesos.id_datos";
-		$consulta = $conexion->query($sql);
-		return $datos = $consulta->fetch_object();
-	}
-
-
-	function demandadoProceso($twig, $conexion, $id)
-	{
-		$sql = "SELECT datos.nom_datos, datos.num_dc, relaciones_procesos.id_proceso  
-				FROM relaciones_procesos, datos 
-				WHERE id_proceso = $id AND cargo = 'demandado' 
-				AND datos.id_datos = relaciones_procesos.id_datos";
-		$consulta = $conexion->query($sql);
-		return $datos = $consulta->fetch_object();
-	}
-
-
+	
+function subirArchivo($twig, $conexion, $id, $nombre, $fecha, $ff_load, $archivo)
+{
+	echo "tres";
+	
+}
 ?>

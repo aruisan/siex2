@@ -12,7 +12,7 @@ if($_POST['metodo'] == "indexParticipante"){
 	editParticipante($twig, $conexion, $_POST['id']);
 	
 }elseif($_POST['metodo'] == "storeParticipante"){	
-	storeParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono']);
+	storeParticipante($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono'], $_POST['representante']);
 	
 }elseif($_POST['metodo'] == "storeParticipanteProceso"){	
 	storeParticipanteProceso($twig, $conexion, $_POST['nom'], $_POST['dc'], $_POST['persona'], $_POST['email'], $_POST['direccion'], $_POST['telefono']);
@@ -68,9 +68,9 @@ function editParticipante($twig, $conexion, $id)
 
 //////////////////////crud procesos///////////////////////////////////
 
-function storeParticipante($twig, $conexion, $nom, $dc, $persona, $email, $direccion, $telefono)
+function storeParticipante($twig, $conexion, $nom, $dc, $persona, $email, $direccion, $telefono, $representante)
 {
-	$sql = "INSERT INTO datos (nom_datos, num_dc, email, direccion, telefono, tipo_persona) VALUES('$nom', $dc, '$email', '$direccion', '$telefono', '$persona')";
+	$sql = "INSERT INTO datos (nom_datos, num_dc, email, direccion, telefono, tipo_persona, representante) VALUES('$nom', $dc, '$email', '$direccion', '$telefono', '$persona', '$representante')";
 	$ingresar = $conexion->query($sql);
 
 	if($ingresar)

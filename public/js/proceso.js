@@ -34,6 +34,32 @@
     }
 
 
+        function cargarAdjuntarArchivo(id)
+    {
+        var url = "../core/controllers/procesosController.php";
+        var metodo = "cargarAdjuntarArchivo";
+
+
+        $.post(url,{metodo:metodo, id:id}, function(data){
+        $("#page-wrapper").html(data);
+        });
+    }
+
+ function cargarFormParticipantes()
+    {
+        var url = "../core/controllers/participantesController.php";
+        var metodo = 'createParticipante';
+
+        $.post(url,{metodo:metodo}, function(data)
+        {
+        $(".modal-body").html(data);
+        $('#cancelarStoreParticipante, #migas, #storeParticipante').remove();
+        $('#relacionar2').show();
+        $('#relacionar').hide();
+        });
+    }
+
+
 ////////crud proceso////////
     function storeProceso()
     {
@@ -58,19 +84,6 @@
         });
     }
 
-    function cargarFormParticipantes()
-    {
-        var url = "../core/controllers/participantesController.php";
-        var metodo = 'createParticipante';
-
-        $.post(url,{metodo:metodo}, function(data)
-        {
-        $(".modal-body").html(data);
-        $('#cancelarStoreParticipante, #migas, #storeParticipante').remove();
-        $('#relacionar2').show();
-        $('#relacionar').hide();
-        });
-    }
 
     function relacionar()
     {
