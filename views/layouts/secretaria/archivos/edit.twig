@@ -1,1 +1,27 @@
-<h1>{{archivo.nom_documento}}</h1>
+
+		<form id="form-archivo" class="form-horizontal" enctype="multipart/form-data" >
+                <div class="form-group">
+                    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nombre" value="{{archivo.nom_archivo}}" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">FECHA</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="fecha" value="{{archivo.ff_file}}" required>
+                    </div>
+                </div>
+                
+                 <label for="inputFile" class="col-md-2 control-label">File</label>
+
+			      <div class="col-md-10">
+			      	<input type="hidden" name="ruta" value="{{archivo.ruta}}" >
+			        <input type="file" name="archivo">
+			      </div>
+            </form>
+
+            <script type="text/javascript">
+ 			$('#updateArchivo').click(function(){   updateArchivo({{archivo.id_archivo}}); });
+            </script>

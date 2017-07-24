@@ -22,13 +22,13 @@
          <div class="container">
             <div class="header-content">
                <a href="index.php">
-                  <img src="public/img/logo.png" width="150" alt="site identity" /><h5 style="color: white;">Sistema Integral de EXpedientes y archivos</h5>
+                  <img src="public/img/logo.png" width="150" alt="site identity" /><h5 style="color: white;">Sistema Integral de Expedientes y archivos</h5>
                </a>
 
                <nav class="site-nav">
                   <ul class="clean-list site-links">
                      <li>
-                        <a href="#">Contactenos</a>
+                        <a href="contactenos.php">Contactenos</a>
                      </li>
                   </ul>
                   <a href="views" class="btn btn-outlined">Entrar</a>

@@ -49,7 +49,7 @@ function loguearUsuario($twig, $conexion, $nick, $password)
 
 		header('location:../../views/secretaria.php?nom_user='.$datos->nombre);
 	}else{
-		echo "no see encontro ni mierda";
+		echo "Usuario o Contraseña incorrectos";
 	}
 }
 

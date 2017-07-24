@@ -145,6 +145,28 @@
           </div>
         </div>
 
+
+           <!-- Modal -->
+        <div class="modal fade" id="modal-create-archivos" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Formulario de Archivos</h4>
+              </div>
+              <div class="modal-body-2">
+                <!--  formulario de participantes -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary ocultar" data-dismiss="modal" id="updateArchivo">Editar Archivo</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="storeArchivo">Subir Archivo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            
+
     </div>
     <!-- /#wrapper -->
 
