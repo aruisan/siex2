@@ -1,0 +1,56 @@
+<div class="col-md-12">
+	<form  class="navbar-form" id="form-create-impulso" role="form">
+    	<div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
+            <select name="impulso" class="form-control">
+            	{% for impulso in tipo_impulsos  %}	
+            	<option value="{{impulso.id_tipo_impulso}}">{{impulso.nom_tipo_impulso}}</option>
+            	{% endfor %}
+            </select>
+        </div>
+        <div class="input-group">
+        	<span class="input-group-addon">%</span>
+            <input type="date" class="form-control" name="ff_notificacion">  
+        </div>
+        <div class="input-group">
+        	<span class="input-group-addon">%</span>
+            <input type="date" class="form-control" name="ff_vencimiento">  
+        </div>
+            <button type="submit" class="btn btn-primary" id="storeImpulso">Impulsar</button>
+    </form>
+      {% if tablas == 0  %}
+      	<h2 class="text-center">NO TIENE IMPULSOS EL PROCESO </h2>
+      {% else %}
+		<table id="table-duenos" class="table table-condensed table-hover table-bordered table-responsive">
+		 	<thead>
+		 		<th>TIPO IMPULSO</th>
+		 		<th>FF NOTIFICACION</th>
+		 		<th>FF VENCIMIENTO</th>
+		 		<th>PDF</th>
+		 		<th>EDITAR</th>
+		 	</thead>
+		 	<tbody>
+		 		{% for tabla in tablas  %}		 	
+		 			<tr>
+		 				<td>{{tabla.nom_tipo_impulso}}</td>
+		 				<td>{{tabla.ff_notificacion}}</td>
+		 				<td>{{tabla.ff_vencimiento}}</td>
+		 				<td><a href="ver_impulso.php?id={{tabla.id_impulso}}" target="_blank"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i></a></td>
+            <td><a id="id=tabla.id_impulso"><i class="fa fa-pencil-square-o editImpulso" aria-hidden="true"></i></a></td>
+					 </tr>										
+		 		{% endfor %}
+		 	</tbody>
+		 </table>
+	 {% endif %}
+	</div>
+   <script type="text/javascript">
+    $('#storeImpulso').click(function(e){e.preventDefault();  storeImpulso({{id_proceso_impulso}}); });
+    $('.editImpulso').click(function(){ var id = $(this).attr('id'); cargarEditImpulso(id); });
+   
+
+   </script>
+
+
+
+
+

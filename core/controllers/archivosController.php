@@ -1,5 +1,9 @@
 <?php
 require_once '../models/bbdd.php';
+require_once '../models/complemento.php';
+
+session_start();
+
 
 
 
@@ -20,6 +24,15 @@ if($_POST['metodo'] == "indexArchivo"){
 	
 }elseif($_POST['metodo'] == "updateArchivo"){	
 	updateArchivo($twig, $conexion, $_POST['nombre'], $_POST['fecha'], $_POST['id'], $_FILES['archivo'], $_POST['ruta']);
+
+}elseif($_POST['metodo'] == "createImpulso"){		
+	createImpulso($twig, $conexion, $_POST['id']);
+
+}elseif($_POST['metodo'] == "storeImpulso"){		
+	storeImpulso($twig, $conexion, $_POST['impulso'], $_POST['ff_notificacion'], $_POST['ff_vencimiento'], $_POST['id']);
+
+
+
 	
 		}else{	
 			header('location:../../index.php');	
@@ -215,4 +228,112 @@ function updateconarchivo($twig, $conexion, $nombre, $fecha, $id, $archivo, $rut
 	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////vistas impulso////
+
+function createImpulso($twig, $conexion, $id_proceso_impulso)
+{
+	$tablas = tabla($conexion, $id_proceso_impulso);
+	$tipo_impulsos = tipo_impulso($conexion);
+
+	echo $twig->render('layouts/secretaria/impulso/index.twig', compact('tipo_impulsos', 'tablas', 'id_proceso_impulso'));
+}
+
+///////crud impulso
+
+
+function storeImpulso($twig, $conexion, $impulso, $ff_notificacion, $ff_vencimiento, $id)
+{
+	$id_secretaria = $_SESSION['id_secre'];
+	$conteo = conteo($conexion,  $id_secretaria, $impulso );
+	$ff_load = date('Y/m/d');
+
+
+	$sql="INSERT INTO impulso (`id_tipo_impulso`, `id_proceso`, `ff_notificacion`, `ff_vencimiento`, `conteo`, `ff`, `secretaria`)
+			VALUES($impulso, '$id', '$ff_notificacion', '$ff_vencimiento', $conteo, '$ff_load', $id_secretaria)";
+	$insertar = $conexion->query($sql);
+
+	if($insertar)
+	{
+		$clase = "text-success";
+		$respuesta = "Impulso creado correctamente";
+	}else{
+		$clase = "text-danger";
+		$respuesta = "error al Crear Impulso ";
+	}
+
+	$pagina = 'cargarCreateImpulso('.$id.');';
+
+	echo $twig->render('layouts/secretaria/resp.twig', compact('clase', 'respuesta', 'pagina'));
+
+}
+
+///////otras funciones impulso
+
+
+
+function tabla($conexion, $id_proceso_impulso)
+{
+	echo $id_proceso_impulso;
+	$sql = "SELECT a.*, b.nom_tipo_impulso FROM impulso a, tipo_impulso b WHERE a.id_tipo_impulso = b.id_tipo_impulso AND a.id_proceso = $id_proceso_impulso";
+	$consulta = $conexion->query($sql);
+
+
+	if($consulta->num_rows > 0){
+		while($datos = $consulta->fetch_object())
+		{
+			$data[] = $datos;
+		}
+
+	}else{
+		$data = 0;
+	}
+
+		return $data;
+
+}
+
+
+function tipo_impulso($conexion)
+{
+	$sql = "SELECT * FROM tipo_impulso";
+	$consulta = $conexion->query($sql);
+
+		while($datos = $consulta->fetch_object())
+		{
+			$data[] = $datos;
+		}
+
+		return $data;
+
+}
+
+function conteo($conexion,  $id_secretaria, $impulso)
+{
+	$sql = "SELECT MAX(conteo) AS conteo from impulso WHERE id_tipo_impulso = $impulso AND secretaria = $id_secretaria";
+	$consulta = $conexion->query($sql);
+	if($consulta->num_rows > 0)
+	{
+		$datos = $consulta->fetch_object();
+		$data = $datos->conteo+1;
+	}else{
+		$data = 1;
+	}
+	return $data;
+}
 ?>

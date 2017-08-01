@@ -1,4 +1,18 @@
+<?php
+require_once '../core/models/bbdd.php';
+session_start();
+$id = $_SESSION['id_secre'];
 
+$sql = "SELECT usuarios.*, datos.nom_datos, alcaldia.* 
+        FROM datos, usuarios, alcaldia 
+        WHERE usuarios.id_alcaldia = alcaldia.id_alcaldia
+        AND usuarios.id_datos = datos.id_datos
+        AND usuarios.id_usuarios = $id";
+
+$consulta = $conexion->query($sql);
+$datos = $consulta->fetch_object();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +75,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="titulo_menu" class="navbar-brand" href="#"><?= $_GET['nom_user']?></a>
+                <a id="titulo_menu" class="navbar-brand" href="#"><?= $datos->nom_datos ?> /ALCALDIA: <?= $datos->nom_alcaldia?></a>
+                <img class="navbar-brand" width="70px"  src="data:image/jpeg;base64,<?= base64_encode($datos->logo); ?>" class="img-thumbnail" />
+                <img class="navbar-brand" width="70px"  src="data:image/jpeg;base64,<?= base64_encode($datos->escudo); ?>" class="img-thumbnail" />
             </div>
             <!-- /.navbar-header -->
 
@@ -76,7 +92,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Editar Perfil</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+                        <li><a href="index.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -156,6 +172,26 @@
               </div>
               <div class="modal-body-2">
                 <!--  formulario de participantes -->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary ocultar" data-dismiss="modal" id="updateArchivo">Editar Archivo</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="storeArchivo">Subir Archivo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!-- Modal -->
+        <div class="modal fade" id="modal-impulso" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"> Formulario de Impulsos</h4>
+              </div>
+              <div class="modal-body">
+                <div id="formulario-impulso"></div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

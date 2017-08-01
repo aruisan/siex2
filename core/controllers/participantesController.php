@@ -1,5 +1,6 @@
 <?php
 require_once '../models/bbdd.php';
+require_once '../models/complemento.php';
 
 
 if($_POST['metodo'] == "indexParticipante"){

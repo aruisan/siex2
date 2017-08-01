@@ -41,13 +41,11 @@
   function enviarContactenos()
   {
            var url = "enviar.php";
-               $.post(url,function(data){
+           var datos= $('#form-contactenos').serialize();
+           console.log(datos);
+               $.post(url, datos, function(data){
                   console.log(data);
-                  if(data == 1){
-                    $('#caja_respuesta').show().html('<div class="alert alert-success text-center">Correo enviado</div>');
-                  }else{
-                   $('#caja_respuesta').show().html('<div class="alert alert-danger text-center">error al enviar datos</div>');
-                  }
+                    $('#caja_respuesta').show().html(data); 
                   setTimeout(function(){ $('#caja_respuesta').hide(); }, 3000);
                });
   }

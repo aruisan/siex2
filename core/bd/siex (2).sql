@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-07-2017 a las 15:02:55
+-- Tiempo de generación: 01-08-2017 a las 00:13:45
 -- Versión del servidor: 10.1.22-MariaDB
 -- Versión de PHP: 7.0.18
 
@@ -127,6 +127,32 @@ INSERT INTO `datos` (`id_datos`, `nom_datos`, `num_dc`, `email`, `direccion`, `t
 (20, 'CON JURIDICA', '3150717', 'JURIDICA@GMAIL.COM', 'CARARA', 'JURIDICA', 278972389, 'CON NATURAL'),
 (21, 'NUEVO PARTICIPANTE', '1702525', 'NUEVO@GMAIL.COM', 'ADAD', 'NATURAL', 31334215, ''),
 (22, 'NUEVO PARTICIPANTE', '1702525', 'NUEVO@GMAIL.COM', 'ADAD', 'NATURAL', 31334215, '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `impulso`
+--
+
+CREATE TABLE `impulso` (
+  `id_impulso` int(11) NOT NULL,
+  `id_tipo_impulso` int(11) NOT NULL,
+  `id_proceso` int(11) NOT NULL,
+  `ff_notificacion` date NOT NULL,
+  `ff_vencimiento` date NOT NULL,
+  `conteo` int(11) NOT NULL,
+  `ff` date NOT NULL,
+  `secretaria` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `impulso`
+--
+
+INSERT INTO `impulso` (`id_impulso`, `id_tipo_impulso`, `id_proceso`, `ff_notificacion`, `ff_vencimiento`, `conteo`, `ff`, `secretaria`) VALUES
+(1, 3, 3, '2017-07-18', '2017-07-26', 1, '2017-07-31', 1),
+(2, 1, 4, '2017-07-11', '2017-07-26', 2, '2017-07-31', 1),
+(3, 3, 16, '1987-09-15', '1993-05-15', 1, '2017-07-31', 1);
 
 -- --------------------------------------------------------
 
@@ -332,7 +358,8 @@ INSERT INTO `procesos` (`id_proceso`, `ff`, `valor`, `num_expediente`, `ciudad`,
 (37, '2017-07-14', 5255, 'h44', 'asd', 2, 1),
 (38, '2017-07-14', 4444444, 'ffff', 'ffffff', 2, 1),
 (39, '2017-07-14', 645, 'sadasdasd', 'sdasdsa', 2, 1),
-(40, '2017-07-18', 500000, 'TR123456', 'GIRARDOT', 2, 1);
+(40, '2017-07-18', 500000, 'TR123456', 'GIRARDOT', 2, 1),
+(41, '2017-07-27', 5052, 'tr120445', 'girardot', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -563,7 +590,12 @@ INSERT INTO `relaciones_procesos` (`id_relacion_proceso`, `expediente`, `id_dato
 (209, 'TR123456', 19, 'DEMANDADO'),
 (210, 'TR123456', 3, 'ABOGADO DEMANDANTE'),
 (211, 'TR123456', 5, 'ABOGADO DEMANDADO'),
-(212, 'TR123456', 4, 'JUEZ');
+(212, 'TR123456', 4, 'JUEZ'),
+(213, 'tr120445', 1, 'DEMANDANTE'),
+(214, 'tr120445', 19, 'DEMANDADO'),
+(215, 'tr120445', 3, 'ABOGADO DEMANDANTE'),
+(216, 'tr120445', 3, 'ABOGADO DEMANDADO'),
+(217, 'tr120445', 4, 'JUEZ');
 
 -- --------------------------------------------------------
 
@@ -585,6 +617,27 @@ INSERT INTO `roles` (`nom_rol`, `id_rol`) VALUES
 ('secretaria', 2),
 ('abogado', 3),
 ('juez', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo_impulso`
+--
+
+CREATE TABLE `tipo_impulso` (
+  `id_tipo_impulso` int(11) NOT NULL,
+  `nom_tipo_impulso` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_impulso`
+--
+
+INSERT INTO `tipo_impulso` (`id_tipo_impulso`, `nom_tipo_impulso`) VALUES
+(1, 'ACUERDO DE PAGO'),
+(2, 'AUTO ORDENA'),
+(3, 'OFICIO CITACION'),
+(4, 'OFICIO EMBARGO');
 
 -- --------------------------------------------------------
 
@@ -692,6 +745,12 @@ ALTER TABLE `datos`
   ADD PRIMARY KEY (`id_datos`);
 
 --
+-- Indices de la tabla `impulso`
+--
+ALTER TABLE `impulso`
+  ADD PRIMARY KEY (`id_impulso`);
+
+--
 -- Indices de la tabla `industria_comercio`
 --
 ALTER TABLE `industria_comercio`
@@ -746,6 +805,12 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
 
 --
+-- Indices de la tabla `tipo_impulso`
+--
+ALTER TABLE `tipo_impulso`
+  ADD PRIMARY KEY (`id_tipo_impulso`);
+
+--
 -- Indices de la tabla `tipo_procesos`
 --
 ALTER TABLE `tipo_procesos`
@@ -789,6 +854,11 @@ ALTER TABLE `archivos`
 ALTER TABLE `datos`
   MODIFY `id_datos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
+-- AUTO_INCREMENT de la tabla `impulso`
+--
+ALTER TABLE `impulso`
+  MODIFY `id_impulso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT de la tabla `industria_comercio`
 --
 ALTER TABLE `industria_comercio`
@@ -822,17 +892,22 @@ ALTER TABLE `predial`
 -- AUTO_INCREMENT de la tabla `procesos`
 --
 ALTER TABLE `procesos`
-  MODIFY `id_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `relaciones_procesos`
 --
 ALTER TABLE `relaciones_procesos`
-  MODIFY `id_relacion_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id_relacion_proceso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `tipo_impulso`
+--
+ALTER TABLE `tipo_impulso`
+  MODIFY `id_tipo_impulso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tipo_procesos`
 --

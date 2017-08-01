@@ -1,8 +1,6 @@
 
-
-
               <br><br>
-                <form class="text-danger">
+                <form id="form-contactenos" class="text-danger">
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label>NOMBE COMPLETO: </label>
                     <div class="input-group">
@@ -20,5 +18,9 @@
                   <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <label>MENSAJE: </label>
                       <textarea class="form-control bg-danger" name="message" rows="5"></textarea>
+                      <label>___________________________________________________________________________________
+                      <label>               ALTA ESPECIALIDAD SAS
+                      <label>Carrera 37 A 29 56 Int. 2207 El Poblado Medellin CEL 3208858086 - 3144836423
+                      <label>Correo: info@altaespecialidad.co - luismoyar@hotmail.com 
                   </div>
                 </form>

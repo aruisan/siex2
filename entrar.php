@@ -30,7 +30,7 @@
     <div class="login-box">
         <div class="logo">
             <a href="index.php"><b>SIEX</b></a>
-            <small>Sistema Integral de EXpedientes</small>
+            <small>Sistema Integral de Expedientes</small>
         </div>
         <div class="card">
             <div class="body">
@@ -55,10 +55,6 @@
                     <div class="row">
                         <div class="col-xs-5">
                             <button class="btn btn-block bg-blue waves-effect" type="submit">Entrar</button>
-                        </div>
-                    
-                        <div class="col-xs-6">
-                            <a href="registrarse.php" class="btn btn-link">Registrarse Ahora!</a>
                         </div>
                     </div>
                 </form>

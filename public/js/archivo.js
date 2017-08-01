@@ -84,4 +84,43 @@
 
 
 
-/////////////// crud Archivos /////////////////////////////
+/////////////// impulsos /////////////////////////////
+ function cargarCreateImpulso(id)
+    {
+        var url = "../core/controllers/archivosController.php";
+        var metodo = "createImpulso";
+
+        $.post(url,{metodo:metodo, id:id}, function(data){
+          console.log(data);
+        $("#formulario-impulso").html(data);
+        });
+    }
+
+    function cargarEditImpulso(id)
+    {
+        var url = "../core/controllers/archivosController.php";
+        var metodo = "editImpulso";
+
+        $.post(url,{metodo:metodo, id:id}, function(data){
+          $('#updateArchivo').show();
+          $('#storeArchivo').hide();
+        $(".modal-body-2").html(data);
+        });
+    
+    }
+  ////////crud impulso
+
+
+   function storeImpulso(id)
+    {
+        var url = "../core/controllers/archivosController.php";
+        var metodo = "&metodo=storeImpulso";
+        var di = "&id="+id;
+        var data = $('#form-create-impulso').serialize();
+        alert(id);
+
+        $.post(url,data+metodo+di, function(data){
+          console.log(data);
+        $("#formulario-impulso").html(data);
+        });
+    }

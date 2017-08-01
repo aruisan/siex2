@@ -1,5 +1,6 @@
 <?php
 require_once '../models/bbdd.php';
+require_once '../models/complemento.php';
 
 
 if($_POST['metodo'] == "storeUsuario"){
@@ -47,7 +48,7 @@ function loguearUsuario($twig, $conexion, $nick, $password)
 		session_start();
 		$_SESSION['id_secre'] = $datos->id_usuarios;
 
-		header('location:../../views/secretaria.php?nom_user='.$datos->nombre);
+		header('location:../../views/secretaria.php');
 	}else{
 		echo "Usuario o Contraseña incorrectos";
 	}

@@ -4,6 +4,8 @@
         	<ol class="breadcrumb">
                 <li> <button class="btn btn-link" id="cargarProceso">Ver Procesos</button></li>       
             	<li class="active">Ver archivos el proceso</li>
+            	<li><button class="btn btn-primary" data-toggle="modal" data-target="#modal-impulso" id="createImpulso">Impulsar</button></li>
+
         	</ol>
     	</div>
 	</div>
@@ -67,6 +69,12 @@
 								</td>
 							</tr>
 							{% endfor %}
+							<tr>
+							<td>demo1</td>
+							<td>demo1</td>
+							<td>demo1</td>
+							<td>demo1</td>
+							</tr>
 						</tbody>
 					</table>
 			
@@ -82,6 +90,10 @@
     $('#createArchivo').click(function(){  cargarCreateArchivo(); });
     $('#storeArchivo').click(function(){  storeArchivo({{id}}); });
     $('.editArchivo').click(function(){ var id = $(this).attr('id'); cargarEditArchivo(id); });
+
+    $('#createImpulso').click(function(){  cargarCreateImpulso({{id}}); });
+   
+
    
 
     function tablas()
